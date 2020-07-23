@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class InterviewController extends AbstractController
 {
-    /**
+    /** 
      * @Route("/interview", name="interview")
      */
     public function index()
