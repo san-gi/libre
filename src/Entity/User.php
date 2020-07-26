@@ -50,7 +50,6 @@ class User implements UserInterface
     private $InscriptionDate;
 
     /**
-     * @Groups{("readMessage")}
      * 
      * @ORM\Column(type="string", length=255)
      */

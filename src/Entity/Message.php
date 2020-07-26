@@ -22,7 +22,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Message
 {
     /**
-     * @Groups{("readMessage")}
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -30,20 +29,17 @@ class Message
     private $id;
 
     /**
-     * @Groups{("readMessage")}
      * @ORM\Column(type="string", length=2550)
      */
     private $content;
 
     /**
-     * @Groups{("readMessage")}
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
      */
     private $author;
 
     /**
-     * @Groups{("readMessage")}
      * @ORM\Column(type="date")
      */
     private $date;
