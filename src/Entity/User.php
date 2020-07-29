@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -52,6 +53,7 @@ class User implements UserInterface
     /**
      * 
      * @ORM\Column(type="string", length=255)
+     * @Groups({"readMessage"})
      */
     private $username;
 

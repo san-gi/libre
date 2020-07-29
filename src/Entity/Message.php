@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource(
  *     
+ *      normalizationContext={"groups"={"readMessage"}},
  *      collectionOperations={
  *          "get",
  *          "post"={
@@ -25,22 +27,26 @@ class Message
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"readMessage"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=2550)
+     * @Groups({"readMessage"})
      */
     private $content;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messages")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"readMessage"})
      */
     private $author;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"readMessage"})
      */
     private $date;
 
