@@ -18,12 +18,7 @@ function Messages({ message, user }) {
     const updateMessage = useCallback((newMessage, oldMessage) => {
         setMessages(messages => messages.map(m => m == oldMessage ? newMessage : m))
     }, [])
-    const onMessage = useCallback(
-        newMessage => {
-            onUpdate(newMessage,message)
-        },
-        [message],
-    )
+   
 
 
 
@@ -44,14 +39,19 @@ function Messages({ message, user }) {
     </div>
 }
 
-const MessagesForm = React.memo(({ onMessage }) => {
-    console.log("onmessage")
+const MessagesForm = React.memo(({ onMessage, message = null }) => {
+
     const ref = useRef(null)
+
     const onSucess = useCallback(message => {
         onMessage(message)
         ref.current.value = ''
     }, [ref, onMessage])
-    const { load, loading } = useFetch('/api/messages', 'POST', onSucess)
+   
+    const method = message ? 'PUT' : 'POST'
+    const url = message ? message['@id'] : '/api/messages'
+    const { load, loading } = useFetch(url, method, onSucess)
+    
     const onSubmit = useCallback(e => {
         console.log('submit')
         e.preventDefault()
@@ -59,6 +59,14 @@ const MessagesForm = React.memo(({ onMessage }) => {
             content: ref.current.value,
         })
     }, [load, ref])
+
+
+    useEffect(() => {
+        if(message && message.content && ref.current){
+            ref.current.value = message.content
+            console.log(message.content)
+        }
+    }, [message,ref])
     return <div className="well">
         <form onSubmit={onSubmit}>
             <fieldset>
@@ -88,12 +96,16 @@ const Message = React.memo(({ message, onDelete, canEdit, onUpdate }) => {
     const onDeleteCallback = useCallback(() => {
         onDelete(message)
     }, [message])
+
+    const onMessage = useCallback((newMessage) => {
+            onUpdate(newMessage,message)
+        },[message])
     const { loading: loadingDelete, load: callDelete } = useFetch(message['@id'], 'DELETE', onDeleteCallback)
     return <div className="row ">
         <h4 className="col-sm-3">{message.author.username}</h4>
         {state == VIEW ?
             <div>{message.content}</div> :
-            <MessagesForm message={message} onMessage={onUpdate} />
+            <MessagesForm message={message} onMessage={onMessage} />
         }
         {canEdit &&
             <p>

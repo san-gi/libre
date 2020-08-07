@@ -18,7 +18,7 @@ use Doctrine\ORM\Mapping as ORM;
  *              "controller"=App\Controller\MessageCreateController::class
  *          }
  *      },
- *      itemOperations={"get","delete"},
+ *      itemOperations={"get","delete","put"},
  * )
  * @ORM\Entity(repositoryClass=MessageRepository::class)
  */
