@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\MessageRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -14,10 +15,10 @@ use Doctrine\ORM\Mapping as ORM;
  *      collectionOperations={
  *          "get",
  *          "post"={
- *              "controller"=App\controller\MessageCreateController::class
+ *              "controller"=App\Controller\MessageCreateController::class
  *          }
  *      },
- *      itemOperations={"get"},
+ *      itemOperations={"get","delete"},
  * )
  * @ORM\Entity(repositoryClass=MessageRepository::class)
  */
@@ -45,7 +46,7 @@ class Message
     private $author;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @Groups({"readMessage"})
      */
     private $date;
@@ -84,9 +85,10 @@ class Message
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate( $date): self
     {
-        $this->date = $date;
+        
+        $this->date = new DateTime(date('Y-m-d H:i:s'));
 
         return $this;
     }

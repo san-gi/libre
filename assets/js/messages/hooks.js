@@ -6,7 +6,7 @@ async function jsonFetch(url, method = 'GET', data = null) {
         method: method,
         headers: {
             'Accept': 'application/ld+json',
-            'Content-type': 'application/json'
+            'Content-Type': 'application/json'
         }
     }
     if (data) {
@@ -42,7 +42,7 @@ export function useMessagesFetch(url) {
     }, [url])
    
     return {
-        items, load, loading
+        items,setItems, load, loading
     }
 }
 
@@ -52,12 +52,13 @@ export function useFetch(url, method = 'POST', callback = null) {
         setLoading(true)
         try {
             const response = await jsonFetch(url, method, data)
+            setLoading(false)
             if (callback)
                 callback(response)
         } catch (error) {
             console.error(error)
         }
-        setLoading(false)
+       
 
     }, [url, method, callback])
     return {

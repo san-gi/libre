@@ -1,26 +1,59 @@
 import { render } from 'react-dom'
-import React, { useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useMessagesFetch, useFetch } from './hooks'
 
+
+
+const VIEW = 'VIEW'
+const EDIT = 'EDIT'
+
 function Messages({ message, user }) {
-    const { items: messages, load, loading } = useMessagesFetch('/api/messages')
+    const { items: messages, setItems: setMessages, load, loading } = useMessagesFetch('/api/messages')
+    const addMessage = useCallback(message => {
+        setMessages(messages => [message, ...messages])
+    }, [])
+    const deleteMessage = useCallback(message => {
+        setMessages(messages => messages.filter(m => m != message))
+    }, [])
+    const updateMessage = useCallback((newMessage, oldMessage) => {
+        setMessages(messages => messages.map(m => m == oldMessage ? newMessage : m))
+    }, [])
+    const onMessage = useCallback(
+        newMessage => {
+            onUpdate(newMessage,message)
+        },
+        [message],
+    )
+
+
+
     useEffect(() => {
         load()
     }, [])
     return <div>
 
         {loading && 'Chargement...'}
-        {messages.map(m => <Message key={m.id} message={m} />)}
+        {messages.map(m => <Message key={m.id}
+            message={m}
+            canEdit={m.author.id == user}
+            onDelete={deleteMessage}
+            onUpdate={updateMessage} />)}
 
-        {<MessagesForm />}
+        {user && <MessagesForm onMessage={addMessage} />}
 
     </div>
 }
 
-const MessagesForm = React.memo(() => {
+const MessagesForm = React.memo(({ onMessage }) => {
+    console.log("onmessage")
     const ref = useRef(null)
-    const { load, loading } = useFetch('/api/messages', 'POST')
+    const onSucess = useCallback(message => {
+        onMessage(message)
+        ref.current.value = ''
+    }, [ref, onMessage])
+    const { load, loading } = useFetch('/api/messages', 'POST', onSucess)
     const onSubmit = useCallback(e => {
+        console.log('submit')
         e.preventDefault()
         load({
             content: ref.current.value,
@@ -46,11 +79,28 @@ const dateFormat = {
     dateStyle: 'medium',
     timeStyle: 'short'
 }
-const Message = React.memo(({ message }) => {
+const Message = React.memo(({ message, onDelete, canEdit, onUpdate }) => {
+    const [state, setState] = useState(VIEW)
+    const edit = useCallback(() => {
+        setState(state => state == VIEW ? EDIT : VIEW)
+    }, [])
     const date = new Date(message.date)
+    const onDeleteCallback = useCallback(() => {
+        onDelete(message)
+    }, [message])
+    const { loading: loadingDelete, load: callDelete } = useFetch(message['@id'], 'DELETE', onDeleteCallback)
     return <div className="row ">
-        <h4 className="col-3">{message.author.username}</h4>
-        <div>{message.content}</div>
+        <h4 className="col-sm-3">{message.author.username}</h4>
+        {state == VIEW ?
+            <div>{message.content}</div> :
+            <MessagesForm message={message} onMessage={onUpdate} />
+        }
+        {canEdit &&
+            <p>
+                <button className="btn btn-danger" onClick={callDelete.bind(this, null)} disabled={loadingDelete}>supprimer</button>
+                <button className="btn btn-secondary" onClick={edit} disabled={loadingDelete}>edit</button>
+            </p>
+        }
         <strong>{date.toLocaleString()}</strong>
     </div>
 
@@ -60,7 +110,8 @@ const Message = React.memo(({ message }) => {
 class MessagesElement extends HTMLElement {
 
     connectedCallback() {
-        render(<Messages />, this)
+        const user = parseInt(this.dataset.user, 10)
+        render(<Messages user={user} />, this)
     }
 }
 
