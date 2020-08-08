@@ -1,3 +1,5 @@
-body {
+#messageslist {
     background-color: lightgray;
+    overflow: auto;
+    scroll-behavior: smooth;
 }

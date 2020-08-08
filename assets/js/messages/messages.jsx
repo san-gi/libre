@@ -10,7 +10,8 @@ const EDIT = 'EDIT'
 function Messages({ message, user }) {
     const { items: messages, setItems: setMessages, load, loading } = useMessagesFetch('/api/messages')
     const addMessage = useCallback(message => {
-        setMessages(messages => [message, ...messages])
+        setMessages(messages => [...messages, message])
+        document.getElementById("messageslist").scrollTop = document.getElementById("messageslist").scrollHeight;
     }, [])
     const deleteMessage = useCallback(message => {
         setMessages(messages => messages.filter(m => m != message))
@@ -18,23 +19,25 @@ function Messages({ message, user }) {
     const updateMessage = useCallback((newMessage, oldMessage) => {
         setMessages(messages => messages.map(m => m == oldMessage ? newMessage : m))
     }, [])
-   
+
 
 
 
     useEffect(() => {
+
         load()
     }, [])
-    return <div>
+    return <div className="h-100">
+        <div className="h-75" id="messageslist">
+            {loading && 'Chargement...'}
 
-        {loading && 'Chargement...'}
-        {messages.map(m => <Message key={m.id}
-            message={m}
-            canEdit={m.author.id == user}
-            onDelete={deleteMessage}
-            onUpdate={updateMessage} />)}
-
-        {user && <MessagesForm onMessage={addMessage} />}
+            {messages.map(m => <Message key={m.id}
+                message={m}
+                canEdit={m.author.id == user}
+                onDelete={deleteMessage}
+                onUpdate={updateMessage} />)}
+        </div>
+        {user && <MessagesForm onMessage={addMessage} className="h-25" />}
 
     </div>
 }
@@ -47,36 +50,40 @@ const MessagesForm = React.memo(({ onMessage, message = null }) => {
         onMessage(message)
         ref.current.value = ''
     }, [ref, onMessage])
-   
+
     const method = message ? 'PUT' : 'POST'
     const url = message ? message['@id'] : '/api/messages'
     const { load, loading } = useFetch(url, method, onSucess)
-    
+
     const onSubmit = useCallback(e => {
+
+
         console.log('submit')
         e.preventDefault()
         load({
             content: ref.current.value,
         })
+
     }, [load, ref])
 
 
     useEffect(() => {
-        if(message && message.content && ref.current){
+
+        if (message && message.content && ref.current) {
             ref.current.value = message.content
             console.log(message.content)
         }
-    }, [message,ref])
+    }, [message, ref])
     return <div className="well">
         <form onSubmit={onSubmit}>
             <fieldset>
                 <legend>Messages</legend>
             </fieldset>
             <div className="form-group">
-                <textarea ref={ref} id="" cols="30" rows="10" className="form-control"></textarea>
+                <input ref={ref} id="" className="form-control" ></input>
             </div>
             <div className="form-group">
-                <button className="btn btn-primary" disabled={loading}>
+                <button className="btn btn-primary btn-sm" disabled={loading}>
                     Envoyer
                 </button>
             </div>
@@ -98,19 +105,22 @@ const Message = React.memo(({ message, onDelete, canEdit, onUpdate }) => {
     }, [message])
 
     const onMessage = useCallback((newMessage) => {
-            onUpdate(newMessage,message)
-        },[message])
+
+        onUpdate(newMessage, message)
+        edit()
+
+    }, [message])
     const { loading: loadingDelete, load: callDelete } = useFetch(message['@id'], 'DELETE', onDeleteCallback)
-    return <div className="row ">
-        <h4 className="col-sm-3">{message.author.username}</h4>
+    return <div className="p-3">
+        <h4 className="col-sm-3 ">{message.author.username}</h4>
         {state == VIEW ?
             <div>{message.content}</div> :
             <MessagesForm message={message} onMessage={onMessage} />
         }
-        {canEdit &&
-            <p>
-                <button className="btn btn-danger" onClick={callDelete.bind(this, null)} disabled={loadingDelete}>supprimer</button>
-                <button className="btn btn-secondary" onClick={edit} disabled={loadingDelete}>edit</button>
+        {canEdit && state == VIEW &&
+            <p >
+                <button className="btn btn-danger btn-sm" onClick={callDelete.bind(this, null)} disabled={loadingDelete}>supprimer</button>
+                <button className="btn btn-secondary btn-sm" onClick={edit} disabled={loadingDelete}>edit</button>
             </p>
         }
         <strong>{date.toLocaleString()}</strong>
