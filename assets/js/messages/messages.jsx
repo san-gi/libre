@@ -1,17 +1,28 @@
 import { render } from 'react-dom'
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useMessagesFetch, useFetch } from './hooks'
+import io from 'socket.io-client';
 
 
 
 const VIEW = 'VIEW'
 const EDIT = 'EDIT'
-
+let somsg = true
 function Messages({ message, user }) {
+    const socket = io('192.168.1.10:3001', { jsomp: false });
+    console.log("yatataaaa... hein")
+    if(somsg){
+        somsg=false
+        socket.on("msg", (msg) => { 
+            setMessages(messages => [...messages, msg])
+            document.getElementById("messageslist").scrollTop = document.getElementById("messageslist").scrollHeight;
+        })
+    }
+  
     const { items: messages, setItems: setMessages, load, loading } = useMessagesFetch('/api/messages')
     const addMessage = useCallback(message => {
-        setMessages(messages => [...messages, message])
-        document.getElementById("messageslist").scrollTop = document.getElementById("messageslist").scrollHeight;
+
+        socket.emit("msg", message)
     }, [])
     const deleteMessage = useCallback(message => {
         setMessages(messages => messages.filter(m => m != message))
@@ -24,8 +35,8 @@ function Messages({ message, user }) {
 
 
     useEffect(() => {
-
         load()
+ 
     }, [])
     return <div className="h-100">
         <div className="h-75" id="messageslist">
@@ -130,8 +141,14 @@ const Message = React.memo(({ message, onDelete, canEdit, onUpdate }) => {
 
 
 class MessagesElement extends HTMLElement {
+    constructor(props) {
+        super(props);
+        this.socket = io('192.168.1.10:3001', { jsomp: false });
+
+    }
 
     connectedCallback() {
+
         const user = parseInt(this.dataset.user, 10)
         render(<Messages user={user} />, this)
     }

@@ -26,9 +26,13 @@ async function jsonFetch(url, method = 'GET', data = null) {
 }
 
 export function useMessagesFetch(url) {
+    console.log('lo')
     const [loading, setLoading] = useState(false)
     const [items, setItems] = useState([])
+   
     const load = useCallback(async () => {
+        console.log("lo2")
+      
         setLoading(true)
         try {
             const response = await jsonFetch(url)
