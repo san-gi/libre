@@ -5,13 +5,17 @@ var express = require('express'),
 
 server.listen(3001);
 io.on('connection', (socket) => {
-    socket.on("msg", (msg) => {
-        io.emit("msg", msg);
-        console.log("msg" + msg);
+    socket.on("addMessage", (msg) => {
+        io.emit("addMessage", msg);
+        console.log("addMessage" );
     })
-    socket.on("up", (msgs) => {
-        io.emit("up", msgs);
-        console.log("msg" + msgs);
+    socket.on("updateMessage", (nmsg, omsg) => {
+        io.emit("updateMessage", nmsg, omsg);
+        console.log("updateMessage" );
+    })
+    socket.on("deleteMessage", (msgs) => {
+        io.emit("deleteMessage", msgs);
+        console.log("deleteMessage");
     })
 
 });

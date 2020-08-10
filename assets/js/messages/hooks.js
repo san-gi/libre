@@ -26,15 +26,17 @@ async function jsonFetch(url, method = 'GET', data = null) {
 }
 
 export function useMessagesFetch(url) {
-    console.log('lo')
+
+    
     const [loading, setLoading] = useState(false)
     const [items, setItems] = useState([])
    
     const load = useCallback(async () => {
-        console.log("lo2")
+        
       
         setLoading(true)
         try {
+            console.log("lo2")
             const response = await jsonFetch(url)
             setItems(response['hydra:member'])
         } catch (error) {
@@ -42,7 +44,6 @@ export function useMessagesFetch(url) {
         }
         setLoading(false)
 
-        //d
     }, [url])
    
     return {

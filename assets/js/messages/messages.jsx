@@ -8,33 +8,43 @@ import io from 'socket.io-client';
 const VIEW = 'VIEW'
 const EDIT = 'EDIT'
 let somsg = true
-function Messages({ message, user }) {
+function Messages({ message, user }) { 
     const socket = io('192.168.1.10:3001', { jsomp: false });
-    console.log("yatataaaa... hein")
-    if(somsg){
-        somsg=false
-        socket.on("msg", (msg) => { 
-            setMessages(messages => [...messages, msg])
-            document.getElementById("messageslist").scrollTop = document.getElementById("messageslist").scrollHeight;
-        })
-    }
-  
     const { items: messages, setItems: setMessages, load, loading } = useMessagesFetch('/api/messages')
     const addMessage = useCallback(message => {
-
-        socket.emit("msg", message)
+        socket.emit("addMessage", message) 
     }, [])
     const deleteMessage = useCallback(message => {
-        setMessages(messages => messages.filter(m => m != message))
+        console.log("post elete ?")
+      
+        socket.emit("deleteMessage",message) 
+       
     }, [])
     const updateMessage = useCallback((newMessage, oldMessage) => {
         setMessages(messages => messages.map(m => m == oldMessage ? newMessage : m))
+       // socket.emit("updateMessage",newMessage,oldMessage)
+       
     }, [])
 
+  
 
 
+    useEffect(() => { 
+        socket.on("addMessage", (msg) => { 
+            console.log("post post")
+            setMessages(messages => [...messages, msg])
+            document.getElementById("messageslist").scrollTop = document.getElementById("messageslist").scrollHeight;
+        })
+        socket.on("deleteMessage", (msg) => { 
+            console.log("reception kill")
+            setMessages(messages => messages.filter(m => m != msg))
+            //document.getElementById("messageslist").scrollTop = document.getElementById("messageslist").scrollHeight;
+        })
+        socket.on("updateMessage", (nmsg, omsg)=> { 
+           
+            document.getElementById("updateMessage").scrollTop = document.getElementById("messageslist").scrollHeight;
+        })
 
-    useEffect(() => {
         load()
  
     }, [])
