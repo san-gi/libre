@@ -9,9 +9,9 @@ io.on('connection', (socket) => {
         io.emit("addMessage", msg);
         console.log("addMessage" );
     })
-    socket.on("updateMessage", (nmsg, omsg) => {
-        io.emit("updateMessage", nmsg, omsg);
-        console.log("updateMessage" );
+    socket.on("updateMessage", (msg) => {
+        io.emit("updateMessage", msg);
+        console.log("updateMessage" +msg);
     })
     socket.on("deleteMessage", (msgs) => {
         io.emit("deleteMessage", msgs);

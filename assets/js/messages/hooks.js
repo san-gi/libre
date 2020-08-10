@@ -19,6 +19,7 @@ async function jsonFetch(url, method = 'GET', data = null) {
     const responseData = await response.json()
     if (response.ok) {
         return responseData
+        
     } else {
         throw responseData
     }
@@ -27,7 +28,7 @@ async function jsonFetch(url, method = 'GET', data = null) {
 
 export function useMessagesFetch(url) {
 
-    
+   
     const [loading, setLoading] = useState(false)
     const [items, setItems] = useState([])
    
@@ -38,7 +39,14 @@ export function useMessagesFetch(url) {
         try {
             console.log("lo2")
             const response = await jsonFetch(url)
-            setItems(response['hydra:member'])
+           
+            const response2 = await jsonFetch(response['hydra:view']['hydra:last'])
+            let nurl = response['hydra:view']['hydra:last'].split("=")
+            nurl[1]-=1;
+            nurl = nurl.join("=")
+            const response3 = await jsonFetch(nurl)
+           response2['hydra:member'] = response3['hydra:member'].concat(response2['hydra:member'])
+            setItems(response2['hydra:member'])
         } catch (error) {
             console.error(error)
         }
@@ -61,7 +69,8 @@ export function useFetch(url, method = 'POST', callback = null) {
             if (callback)
                 callback(response)
         } catch (error) {
-            console.error(error)
+            setLoading(false)
+         
         }
        
 

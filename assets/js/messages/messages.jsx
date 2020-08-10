@@ -8,45 +8,51 @@ import io from 'socket.io-client';
 const VIEW = 'VIEW'
 const EDIT = 'EDIT'
 let somsg = true
-function Messages({ message, user }) { 
+function Messages({ message, user }) {
     const socket = io('192.168.1.10:3001', { jsomp: false });
     const { items: messages, setItems: setMessages, load, loading } = useMessagesFetch('/api/messages')
     const addMessage = useCallback(message => {
-        socket.emit("addMessage", message) 
+        socket.emit("addMessage", message)
     }, [])
     const deleteMessage = useCallback(message => {
-        console.log("post elete ?")
-      
-        socket.emit("deleteMessage",message) 
-       
+
+        socket.emit("deleteMessage", message.id)
     }, [])
     const updateMessage = useCallback((newMessage, oldMessage) => {
-        setMessages(messages => messages.map(m => m == oldMessage ? newMessage : m))
-       // socket.emit("updateMessage",newMessage,oldMessage)
-       
+        // setMessages(messages => messages.map(m => m == oldMessage ? newMessage : m))
+
+        socket.emit("updateMessage", newMessage)
+
     }, [])
 
-  
 
 
-    useEffect(() => { 
-        socket.on("addMessage", (msg) => { 
-            console.log("post post")
+
+    useEffect(() => {
+        socket.on("addMessage", (msg) => {
+
             setMessages(messages => [...messages, msg])
             document.getElementById("messageslist").scrollTop = document.getElementById("messageslist").scrollHeight;
         })
-        socket.on("deleteMessage", (msg) => { 
-            console.log("reception kill")
-            setMessages(messages => messages.filter(m => m != msg))
+        socket.on("deleteMessage", (msg) => {
+
+            setMessages(messages => messages.filter(m => m.id != msg))
             //document.getElementById("messageslist").scrollTop = document.getElementById("messageslist").scrollHeight;
         })
-        socket.on("updateMessage", (nmsg, omsg)=> { 
-           
-            document.getElementById("updateMessage").scrollTop = document.getElementById("messageslist").scrollHeight;
+        socket.on("updateMessage", (msg) => {
+            console.log(msg)
+            setMessages(messages => messages.map(m => {
+                if (m.id == msg.id)
+                    m = msg
+                return m
+            }))
+
+
+            //   document.getElementById("updateMessage").scrollTop = document.getElementById("messageslist").scrollHeight;
         })
 
         load()
- 
+
     }, [])
     return <div className="h-100">
         <div className="h-75" id="messageslist">
@@ -58,7 +64,7 @@ function Messages({ message, user }) {
                 onDelete={deleteMessage}
                 onUpdate={updateMessage} />)}
         </div>
-        {user && <MessagesForm onMessage={addMessage} className="h-25" />}
+        {user ? <MessagesForm onMessage={addMessage} className="h-25" /> : <h4 className="font-weight-bold text-center">Vous devez être connecter pour participer au chat </h4>}
 
     </div>
 }
@@ -69,7 +75,7 @@ const MessagesForm = React.memo(({ onMessage, message = null }) => {
 
     const onSucess = useCallback(message => {
         onMessage(message)
-        ref.current.value = ''
+        ref.current.value = ' '
     }, [ref, onMessage])
 
     const method = message ? 'PUT' : 'POST'
@@ -92,7 +98,7 @@ const MessagesForm = React.memo(({ onMessage, message = null }) => {
 
         if (message && message.content && ref.current) {
             ref.current.value = message.content
-            console.log(message.content)
+
         }
     }, [message, ref])
     return <div className="well">
