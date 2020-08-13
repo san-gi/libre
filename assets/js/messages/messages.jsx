@@ -2,14 +2,14 @@ import { render } from 'react-dom'
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useMessagesFetch, useFetch } from './hooks'
 import io from 'socket.io-client';
-
+ 
 
 
 const VIEW = 'VIEW'
 const EDIT = 'EDIT'
 let somsg = true
 function Messages({ message, user }) {
-    const socket = io('192.168.1.10:3001', { jsomp: false });
+    const socket = io('192.168.1.48:3005', { jsomp: false });
     const { items: messages, setItems: setMessages, load, loading } = useMessagesFetch('/api/messages')
     const addMessage = useCallback(message => {
         socket.emit("addMessage", message)
@@ -159,7 +159,6 @@ const Message = React.memo(({ message, onDelete, canEdit, onUpdate }) => {
 class MessagesElement extends HTMLElement {
     constructor(props) {
         super(props);
-        this.socket = io('192.168.1.10:3001', { jsomp: false });
 
     }
 

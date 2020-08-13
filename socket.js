@@ -3,7 +3,10 @@ var express = require('express'),
     server = require('http').Server(app),
     io = require('socket.io')(server);
 
-server.listen(3001);
+    app.get('/', function (req,res){
+        res.sendFile(__dirname+'/index.html');
+    })
+server.listen(3005);
 io.on('connection', (socket) => {
     socket.on("addMessage", (msg) => {
         io.emit("addMessage", msg);

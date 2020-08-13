@@ -5,4 +5,23 @@
 }
 body {
     background-color: darkgrey;
+    height: 100%;
+}
+#headblog{
+
+    height: 100%;
+    display: block;
+    position: absolute;
+    --largeurimage : calc(100vh*2.5); 
+    --place : calc(-100vw + var(--largeurimage));
+    --place2 : calc(var(--place)/2);
+    --place3 : calc(var(--place2)*-1);
+    left: var(--place3);
+   
+}
+#headimagediv{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    
 }
