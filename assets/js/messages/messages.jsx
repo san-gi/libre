@@ -15,22 +15,16 @@ function Messages({ message, user }) {
         socket.emit("addMessage", message)
     }, [])
     const deleteMessage = useCallback(message => {
-
         socket.emit("deleteMessage", message.id)
     }, [])
     const updateMessage = useCallback((newMessage, oldMessage) => {
         // setMessages(messages => messages.map(m => m == oldMessage ? newMessage : m))
-
         socket.emit("updateMessage", newMessage)
-
     }, [])
-
-
-
 
     useEffect(() => {
         socket.on("addMessage", (msg) => {
-
+            console.log(messages)
             setMessages(messages => [...messages, msg])
             document.getElementById("messageslist").scrollTop = document.getElementById("messageslist").scrollHeight;
         })
@@ -46,12 +40,11 @@ function Messages({ message, user }) {
                     m = msg
                 return m
             }))
-
-
             //   document.getElementById("updateMessage").scrollTop = document.getElementById("messageslist").scrollHeight;
         })
 
         load()
+      
 
     }, [])
     return <div className="h-100">
@@ -165,6 +158,7 @@ class MessagesElement extends HTMLElement {
     connectedCallback() {
 
         const user = parseInt(this.dataset.user, 10)
+        console.log(this.dataset)
         render(<Messages user={user} />, this)
     }
 }

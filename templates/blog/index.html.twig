@@ -1,10 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BlogController!
+{% block title %}Oniric - Blog
 {% endblock %}
 
 {% block body %}
-	<div id="headimagediv" >
-		<img id="headblog" class="img-responsive " src="img/path.jpg" alt="beautifull">
+
+
+	<div id="containerCarte" class="d-flex justify-content-around  flex-wrap">
+		{% for chapitre in chapitres %}	
+			<div class="card bg-dark text-white shadow-sm CartChapter"  id="cardChap{{chapitre.id}}">	
+				<img class="chapterImg" src="img/{{chapitre.couverture}}" alt="Card image cap">
+				<div class="card-img-overlay">
+					<post-p data-numberchap="{{chapitre.id}}"></post-p>
+					<h5 class="card-title">{{chapitre.titre}}</h5>
+					<p class="card-text">{{chapitre.firstParag}}</p>
+				</div>
+			</div>	
+
+		{% endfor %}
 	</div>
+	<post-m class="h-100 w-100"></post-m>
+
+   <div id="ChapitresBas" ></div> 
+
 {% endblock %}

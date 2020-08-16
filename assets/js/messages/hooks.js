@@ -26,20 +26,36 @@ async function jsonFetch(url, method = 'GET', data = null) {
 
 }
 
-export function useMessagesFetch(url) {
-
-   
+export function useChapitreFetch(url){
     const [loading, setLoading] = useState(false)
     const [items, setItems] = useState([])
-   
-    const load = useCallback(async () => {
-        
+    let response;
+    const load = useCallback(async()=> {
       
         setLoading(true)
         try {
-            console.log("lo2")
-            const response = await jsonFetch(url)
+            response = await jsonFetch(url)
+
+            setItems(response)
            
+        } catch(error){
+            console.error(error)
+        }
+        setLoading(false)
+    },[url])
+    return {
+        items,setItems, load, loading,response
+    }
+
+}
+export function useMessagesFetch(url) {
+    const [loading, setLoading] = useState(false)
+    const [items, setItems] = useState([])
+    const load = useCallback(async () => {      
+        setLoading(true)
+        try {
+
+            const response = await jsonFetch(url)  
             const response2 = await jsonFetch(response['hydra:view']['hydra:last'])
             let nurl = response['hydra:view']['hydra:last'].split("=")
             nurl[1]-=1;
@@ -47,13 +63,12 @@ export function useMessagesFetch(url) {
             const response3 = await jsonFetch(nurl)
            response2['hydra:member'] = response3['hydra:member'].concat(response2['hydra:member'])
             setItems(response2['hydra:member'])
+ 
         } catch (error) {
             console.error(error)
         }
         setLoading(false)
-
     }, [url])
-   
     return {
         items,setItems, load, loading
     }
@@ -69,11 +84,8 @@ export function useFetch(url, method = 'POST', callback = null) {
             if (callback)
                 callback(response)
         } catch (error) {
-            setLoading(false)
-         
-        }
-       
-
+            setLoading(false)  
+        } 
     }, [url, method, callback])
     return {
         load, loading}
