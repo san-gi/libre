@@ -36,17 +36,48 @@ gtag('config', 'UA-175357873-1');
 
 	<body>
 		<nav class="navbar navbar-expand navbar-dark bg-dark">
-			<a class="navbar-brand" href="/">Home</a>
+			<a class="navbar-brand" href="/">Oniric</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav mr-auto">
-						<a class="nav-item nav-link my-2" href="/blog">Nous</a>
-					<a class="nav-item nav-link my-2" href="/blog">Blog</a>
-					<a class="nav-item nav-link my-2" href="/interview">Interview</a>
-					<a class="nav-item nav-link my-2" href="/live">Live</a>
-					<a class="nav-item nav-link my-2 " href="/BD">Projet BD</a>
+					<div class=" nav-link dropdown">
+						<a class="nav-link dropdown"  href="/blog">L'association</a>
+						<div class="dropdown-content">
+							<a href="#">Objectifs</a>
+							<a href="#">Les projets</a>
+							<a href="#">Philosophie</a>
+							<a href="#">Nos finances</a>
+							<a href="#">Contact</a>
+						</div>
+					</div>
+					<div class=" nav-link dropdown">
+						<a class="nav-link dropdown"  href="/blog">Le grand voyage</a>
+						<div class="dropdown-content">
+							<a href="#">Les voyageurs</a>
+							<a href="#">Blog</a>
+							<a href="#">Live</a>
+							<a href="#">Nos conseil</a>
+						</div>
+					</div>
+					<div class=" nav-link dropdown">
+						<a class="nav-link dropdown"  href="/interview">Interview/article</a>
+						<div class="dropdown-content">
+							<a href="#">interview</a>
+							<a href="#">Articles</a>
+							<a href="#">Map</a>
+						</div>
+					</div>	
+					<div class=" nav-link dropdown">
+						<a class="nav-link dropdown"  href="/BD" >BD project</a>
+						<div class="dropdown-content">
+							<a href="#">Le concept</a>
+							<a href="#">La BD</a>
+							<a href="#">Court Métrage</a>
+							<a href="#">Photos</a>
+						</div>
+					</div>
 				</div>
 				<div class="navbar-nav">
 					{% if app.user %}
