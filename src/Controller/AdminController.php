@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Chapitre;
+use App\Entity\Image;
 use App\Form\ChapitreType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,25 +18,26 @@ class AdminController extends AbstractController
     public function index(Request $request)
     {
         $chapitre = new Chapitre;
-
-        $form = $this->createForm(ChapitreType::class,$chapitre);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-   
+        $img = new Image;
+        $formImg = $this->createForm(ImageType::class,$img);
+        $formChap = $this->createForm(ChapitreType::class,$chapitre);
+        $formChap->handleRequest($request);
+        $formImg->handleRequest($request);
+        if ($formChap->isSubmitted() && $formChap->isValid()) {
             $chapitre->setDate(new \DateTime());
-            
-
-            
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($chapitre);
             $entityManager->flush();
-            // do anything else you need here, like send an email
-
+        }
+        if ($formImg->isSubmitted() && $formImg->isValid()) {
+            $img->setDate(new \DateTime());
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($chapitre);
+            $entityManager->flush();
         }
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
-            'Chapitre' =>$form->createView()
+            'Chapitre' =>$formChap->createView()
         ]);
     }
 }
