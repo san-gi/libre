@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ApiResource(
  *      normalizationContext={"groups"={"readChapter"}},
- *      itemOperations={"get"}
+ *      itemOperations={"get","delete","put"},
  * )
  * @ORM\Entity(repositoryClass=ChapitreRepository::class)
  */

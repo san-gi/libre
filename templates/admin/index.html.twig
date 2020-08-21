@@ -5,6 +5,89 @@
 {% endblock %}
 
 {% block body %}
+	<button
+		type="button"
+		classname="btn btn-primary"
+		data-toggle="modal"
+		data-target="#ChapMaker">
+		Make Chapter
+	</button>
+	<div
+		class="modal fade bd-example-modal-lg"
+		id="ChapMaker"
+		tabindex="-1"
+		role="dialog"
+		aria-labelledby="myLargeModalLabel"
+		aria-hidden="true">
+		<div
+			class="modal-dialog modal-lg">
+			<div
+				class="modal-content">
+				<div
+					class="modal-header">
+					<h5
+						class="modal-title"
+						id="exampleModalLabel">
+						Nouveau Chapitre
+					</h5>
+					<button
+						type="button"
+						class="close"
+						data-dismiss="modal"
+						aria-label="Close">
+						<span
+							aria-hidden="true">
+							&times;
+						</span>
+					</button>
+				</div>
+				<div
+					class="modal-body">
+					<form>
+						<div
+							class="form-group">
+							<label
+
+								class="col-form-label">
+								Titre
+							</label>
+							<input
+								type="text"
+								class="form-control"
+								id="ChapTitreMaker"/>
+						</div>
+						<div
+							class="form-group">
+							<label
+
+								class="col-form-label">
+								Image
+							</label>
+							<input
+								type="text"
+								class="form-control"
+								id="ChapCouvertureMaker"/>
+						</div>
+						<div
+							class="form-group">
+							<label
+
+								class="col-form-label">
+								firstParag
+							</label>
+							<textarea
+								class="form-control"
+								id="ChapFirstParagMaker"></textarea>
+						</div>
+				
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+
 	<div
 		id="accordion">
 		<div
@@ -99,6 +182,7 @@
 													<input
 														type="text"
 														class="form-control"
+														id="ChapTitre{{chapitre.id}}"
 														value="{{chapitre.titre}}">
 												</div>
 												<div
@@ -111,6 +195,7 @@
 													<input
 														type="text"
 														class="form-control"
+														id="ChapCouverture{{chapitre.id}}"
 														value="{{chapitre.couverture}}">
 												</div>
 												<div
@@ -121,7 +206,8 @@
 														firstParag
 													</label>
 													<textarea
-														class="form-control">
+														class="form-control"
+														id="ChapFirstParag{{chapitre.id}}">
 														{{chapitre.firstParag}}
 													</textarea>
 												</div>
@@ -130,35 +216,18 @@
 													<label
 
 														class="col-form-label">
-														Contenue 
+														Contenue
 													</label>
 													<textarea
-														class="form-control">
+														class="form-control"
+														id="ChapContent{{chapitre.id}}">
 														{{chapitre.content}}
 													</textarea>
 												</div>
 											</form>
 										</div>
-										<div
-											class="modal-footer">
-											<button
-												type="button"
-												class="btn btn-secondary"
-												data-dismiss="modal">
-												close
-											</button>
-												<button
-												type="button"
-												class="btn btn-danger"
-												data-dismiss="modal">
-												Supprimer
-											</button>
-											<button
-												type="button"
-												class="btn btn-primary">
-												Edit Chapitre
-											</button>
-										</div>
+										<form-adm
+											data-id="{{chapitre.id}}"></form-adm>
 									</div>
 								</div>
 							</div>
