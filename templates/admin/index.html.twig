@@ -1,30 +1,342 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!
+{% block title %}
+	Hello AdminController!
 {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-	</style>
+	<div
+		id="accordion">
+		<div
+			class="card">
+			<div
+				class="card-header"
+				id="headingOne">
+				<h5
+					class="mb-0">
+					<button
+						class="btn btn-link"
+						data-toggle="collapse"
+						data-target="#collapseOne"
+						aria-expanded="true"
+						aria-controls="collapseOne">
+						Chapitres
+					</button>
+				</h5>
+			</div>
 
-	<div class="example-wrapper">
-		<h1>Hello
-			{{ controller_name }}! ✅</h1>
-		{{ form_start(Chapitre) }}
-		{{form_widget(Chapitre)}}
-		<button type="submit" class="btn">Register</button>
-		{{form_end(Chapitre)}}
+			<div
+				id="collapseOne"
+				class="collapse show"
+				aria-labelledby="headingOne"
+				data-parent="#accordion">
+				<div
+					class="card-body">
+					<div
+						class="d-flex justify-content-around  flex-wrap">
+						{% for chapitre in chapitres %}
+							<div
+								class="card bg-dark text-white shadow-sm CartChapter"
+								id="cardChap{{chapitre.id}}"
+								data-toggle="modal"
+								data-target="#Chap{{chapitre.id}}">
+								<img
+									class="chapterImg"
+									src="img/{{chapitre.couverture}}"
+									alt="Card image cap">
+								<div
+									class="card-img-overlay">
+									<h5
+										class="card-title">
+										{{chapitre.titre}}
+									</h5>
+									<p
+										class="card-text">
+										{{chapitre.firstParag}}
+									</p>
+								</div>
+							</div>
+							<div
+								class="modal fade bd-example-modal-lg"
+								id="Chap{{chapitre.id}}"
+								tabindex="-1"
+								role="dialog"
+								aria-labelledby="myLargeModalLabel"
+								aria-hidden="true">
+								<div
+									class="modal-dialog modal-lg">
+									<div
+										class="modal-content">
+										<div
+											class="modal-header">
+											<h5
+												class="modal-title"
+												id="exampleModalLabel">
+												Chapitre :
+												{{chapitre.titre}}
+											</h5>
+											<button
+												type="button"
+												class="close"
+												data-dismiss="modal"
+												aria-label="Close">
+												<span
+													aria-hidden="true">
+													&times;
+												</span>
+											</button>
+										</div>
+										<div
+											class="modal-body">
+											<form>
+												<div
+													class="form-group">
+													<label
 
+														class="col-form-label">
+														Titre
+													</label>
+													<input
+														type="text"
+														class="form-control"
+														value="{{chapitre.titre}}">
+												</div>
+												<div
+													class="form-group">
+													<label
 
+														class="col-form-label">
+														Image
+													</label>
+													<input
+														type="text"
+														class="form-control"
+														value="{{chapitre.couverture}}">
+												</div>
+												<div
+													class="form-group">
+													<label
+
+														class="col-form-label">
+														firstParag
+													</label>
+													<textarea
+														class="form-control">
+														{{chapitre.firstParag}}
+													</textarea>
+												</div>
+												<div
+													class="form-group">
+													<label
+
+														class="col-form-label">
+														Contenue 
+													</label>
+													<textarea
+														class="form-control">
+														{{chapitre.content}}
+													</textarea>
+												</div>
+											</form>
+										</div>
+										<div
+											class="modal-footer">
+											<button
+												type="button"
+												class="btn btn-secondary"
+												data-dismiss="modal">
+												close
+											</button>
+												<button
+												type="button"
+												class="btn btn-danger"
+												data-dismiss="modal">
+												Supprimer
+											</button>
+											<button
+												type="button"
+												class="btn btn-primary">
+												Edit Chapitre
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div
+			class="card">
+			<div
+				class="card-header"
+				id="headingTwo">
+				<h5
+					class="mb-0">
+					<button
+						class="btn btn-link collapsed"
+						data-toggle="collapse"
+						data-target="#collapseTwo"
+						aria-expanded="false"
+						aria-controls="collapseTwo">
+						Articles
+					</button>
+				</h5>
+			</div>
+			<div
+				id="collapseTwo"
+				class="collapse"
+				aria-labelledby="headingTwo"
+				data-parent="#accordion">
+				<div
+					class="card-body">
+					<div
+						class="d-flex flex-row">
+						<div
+							class="p-2">
+							Flex item 1
+						</div>
+						<div
+							class="p-2">
+							Flex item 2
+						</div>
+						<div
+							class="p-2">
+							Flex item 3
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div
+			class="card">
+			<div
+				class="card-header"
+				id="headingThree">
+				<h5
+					class="mb-0">
+					<button
+						class="btn btn-link collapsed"
+						data-toggle="collapse"
+						data-target="#collapseThree"
+						aria-expanded="false"
+						aria-controls="collapseThree">
+						Images
+					</button>
+				</h5>
+			</div>
+			<div
+				id="collapseThree"
+				class="collapse"
+				aria-labelledby="headingThree"
+				data-parent="#accordion">
+				<div
+					class="card-body">
+					<div
+						class="d-flex flex-row">
+						<div
+							class="p-2">
+							Flex item 1
+						</div>
+						<div
+							class="p-2">
+							Flex item 2
+						</div>
+						<div
+							class="p-2">
+							Flex item 3
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div
+			class="card">
+			<div
+				class="card-header"
+				id="headingThree">
+				<h5
+					class="mb-0">
+					<button
+						class="btn btn-link collapsed"
+						data-toggle="collapse"
+						data-target="#collapseThree"
+						aria-expanded="false"
+						aria-controls="collapseThree">
+						Videos
+					</button>
+				</h5>
+			</div>
+			<div
+				id="collapseThree"
+				class="collapse"
+				aria-labelledby="headingThree"
+				data-parent="#accordion">
+				<div
+					class="card-body">
+					<div
+						class="d-flex flex-row">
+						<div
+							class="p-2">
+							Flex item 1
+						</div>
+						<div
+							class="p-2">
+							Flex item 2
+						</div>
+						<div
+							class="p-2">
+							Flex item 3
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div
+			class="card">
+			<div
+				class="card-header"
+				id="headingThree">
+				<h5
+					class="mb-0">
+					<button
+						class="btn btn-link collapsed"
+						data-toggle="collapse"
+						data-target="#collapseThree"
+						aria-expanded="false"
+						aria-controls="collapseThree">
+						Sons
+					</button>
+				</h5>
+			</div>
+			<div
+				id="collapseThree"
+				class="collapse"
+				aria-labelledby="headingThree"
+				data-parent="#accordion">
+				<div
+					class="card-body">
+					<div
+						class="d-flex flex-row">
+						<div
+							class="p-2">
+							Flex item 1
+						</div>
+						<div
+							class="p-2">
+							Flex item 2
+						</div>
+						<div
+							class="p-2">
+							Flex item 3
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+
+
 {% endblock %}
