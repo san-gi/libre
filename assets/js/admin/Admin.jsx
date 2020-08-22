@@ -87,7 +87,7 @@ function MakeChapter() {
     const { load, loading } = useFetch('/api/chapitres', 'POST', onSucess)
     return <div>
                
-               <button onClick={onSubmit} type="button" className="btn btn-primary" >Submit</button>
+         
             </div>
 
 }

@@ -30,3 +30,4 @@
 [Wed Aug 19 16:19:22.408635 2020] [core:error] [pid 69728:tid 1320] (20023)The given path was above the root path: [client 192.168.1.10:56048] AH00127: Cannot map GET / HTTP/1.1 to file
 [Wed Aug 19 16:20:02.967374 2020] [core:error] [pid 69728:tid 1328] (20023)The given path was above the root path: [client 192.168.1.10:56094] AH00127: Cannot map GET / HTTP/1.1 to file, referer: http://test.local/register
 [Wed Aug 19 16:58:41.123812 2020] [core:error] [pid 65156:tid 1324] (20023)The given path was above the root path: [client 192.168.1.10:58535] AH00127: Cannot map GET / HTTP/1.1 to file
+[Sat Aug 22 12:54:46.994563 2020] [core:error] [pid 30316:tid 1312] (20023)The given path was above the root path: [client 192.168.1.10:59926] AH00127: Cannot map GET / HTTP/1.1 to file
