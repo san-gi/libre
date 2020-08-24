@@ -7,7 +7,7 @@
 {% block body %}
 	<button
 		type="button"
-		classname="btn btn-primary"
+		class="btn btn-primary"
 		data-toggle="modal"
 		data-target="#ChapMaker">
 		Make Chapter
@@ -54,7 +54,7 @@
 							<input
 								type="text"
 								class="form-control"
-								id="ChapTitreMaker"/>
+								id="ChapTitreMake"/>
 						</div>
 						<div
 							class="form-group">
@@ -66,7 +66,7 @@
 							<input
 								type="text"
 								class="form-control"
-								id="ChapCouvertureMaker"/>
+								id="ChapCouvertureMake"/>
 						</div>
 						<div
 							class="form-group">
@@ -77,17 +77,126 @@
 							</label>
 							<textarea
 								class="form-control"
-								id="ChapFirstParagMaker"></textarea>
+								id="ChapFirstParagMake"></textarea>
 						</div>
-				
+						<div
+							class="form-group">
+							<label
+
+								class="col-form-label">
+								Contenue
+							</label>
+							<textarea
+								class="form-control"
+								id="ChapContentMake"></textarea>
+						</div>
+					</form>
+				</div>
+				<div
+					class="modal-footer">
+					<button
+						type="button"
+						class="btn btn-secondary"
+						data-dismiss="modal">
+						Close
+					</button>
+					<make-chapitre></make-chapitre>
 				</div>
 
 			</div>
 		</div>
 
 	</div>
+	<button
+		type="button"
+		class="btn btn-primary"
+		data-toggle="modal"
+		data-target="#ArtiMaker">
+		Make Article
+	</button>
+	<div
+		class="modal fade bd-example-modal-lg"
+		id="ArtiMaker"
+		tabindex="-1"
+		role="dialog"
+		aria-labelledby="myLargeModalLabel"
+		aria-hidden="true">
+		<div
+			class="modal-dialog modal-lg">
+			<div
+				class="modal-content">
+				<div
+					class="modal-header">
+					<h5
+						class="modal-title"
+						id="exampleModalLabel">
+						Nouveau Article
+					</h5>
+					<button
+						type="button"
+						class="close"
+						data-dismiss="modal"
+						aria-label="Close">
+						<span
+							aria-hidden="true">
+							&times;
+						</span>
+					</button>
+				</div>
+				<div
+					class="modal-body">
+					<form>
+						<div
+							class="form-group">
+							<label
 
+								class="col-form-label">
+								Titre
+							</label>
+							<input
+								type="text"
+								class="form-control"
+								id="ArtiTitreMake"/>
+						</div>
+						<div
+							class="form-group">
+							<label
 
+								class="col-form-label">
+								Image
+							</label>
+							<input
+								type="text"
+								class="form-control"
+								id="ArtiCouvertureMake"/>
+						</div>
+
+						<div
+							class="form-group">
+							<label
+
+								class="col-form-label">
+								Contenue
+							</label>
+							<textarea
+								class="form-control"
+								id="ArtiContentMake"></textarea>
+						</div>
+					</form>
+				</div>
+				<div
+					class="modal-footer">
+					<button
+						type="button"
+						class="btn btn-secondary"
+						data-dismiss="modal">
+						Close
+					</button>
+					<make-article></make-article>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div
 		id="accordion">
 		<div
@@ -262,19 +371,108 @@
 				<div
 					class="card-body">
 					<div
-						class="d-flex flex-row">
-						<div
-							class="p-2">
-							Flex item 1
-						</div>
-						<div
-							class="p-2">
-							Flex item 2
-						</div>
-						<div
-							class="p-2">
-							Flex item 3
-						</div>
+						class="d-flex justify-content-around  flex-wrap">
+						{% for article in articles %}
+							<div
+								class="card bg-dark text-white shadow-sm CartChapter"
+								id="cardChap{{article.id}}"
+								data-toggle="modal"
+								data-target="#Arti{{article.id}}">
+								<img
+									class="chapterImg"
+									src="img/{{article.couverture}}"
+									alt="Card image cap">
+								<div
+									class="card-img-overlay">
+									<h5
+										class="card-title">
+										{{article.titre}}
+									</h5>
+								</div>
+							</div>
+
+							<div
+								class="modal fade"
+								id="Arti{{article.id}}"
+								tabindex="-1"
+								role="dialog"
+								aria-labelledby="exampleModalLabel"
+								aria-hidden="true">
+								<div
+									class="modal-dialog"
+									role="document">
+									<div
+										class="modal-content">
+										<div
+											class="modal-header">
+											<h5
+												class="modal-title">
+												Chapitre :
+												{{article.titre}}
+											</h5>
+											<button
+												type="button"
+												class="close"
+												data-dismiss="modal"
+												aria-label="Close">
+												<span
+													aria-hidden="true">
+													&times;
+												</span>
+											</button>
+										</div>
+										<div
+											class="modal-body">
+											<form>
+												<div
+													class="form-group">
+													<label
+
+														class="col-form-label">
+														Titre
+													</label>
+													<input
+														type="text"
+														class="form-control"
+														id="ArtiTitre{{article.id}}"
+														value="{{article.titre}}" />
+												</div>
+												<div
+													class="form-group">
+													<label
+
+														class="col-form-label">
+														Image
+													</label>
+													<input
+														type="text"
+														class="form-control"
+														id="ArtiCouverture{{article.id}}"
+														value="{{article.couverture}}" />
+												</div>
+
+												<div
+													class="form-group">
+													<label
+
+														class="col-form-label">
+														
+													</label>
+													<textarea
+														class="form-control"
+														id="ArtiContent{{article.id}}">{{article.content}}</textarea>
+												</div>
+											</form>
+										</div>
+										<div
+											class="modal-footer">
+											<form-arti data-id="{{article.id}}" ></form-arti>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						{% endfor %}
 					</div>
 				</div>
 			</div>
@@ -303,21 +501,9 @@
 				data-parent="#accordion">
 				<div
 					class="card-body">
-					<div
-						class="d-flex flex-row">
-						<div
-							class="p-2">
-							Flex item 1
-						</div>
-						<div
-							class="p-2">
-							Flex item 2
-						</div>
-						<div
-							class="p-2">
-							Flex item 3
-						</div>
-					</div>
+				
+						<drop-zone  classe="container"></drop-zone>
+				
 				</div>
 			</div>
 		</div>
@@ -325,23 +511,23 @@
 			class="card">
 			<div
 				class="card-header"
-				id="headingThree">
+				id="headingFour">
 				<h5
 					class="mb-0">
 					<button
 						class="btn btn-link collapsed"
 						data-toggle="collapse"
-						data-target="#collapseThree"
+						data-target="#collapseFour"
 						aria-expanded="false"
-						aria-controls="collapseThree">
+						aria-controls="collapseFour">
 						Videos
 					</button>
 				</h5>
 			</div>
 			<div
-				id="collapseThree"
+				id="collapseFour"
 				class="collapse"
-				aria-labelledby="headingThree"
+				aria-labelledby="headingFour"
 				data-parent="#accordion">
 				<div
 					class="card-body">
@@ -367,23 +553,23 @@
 			class="card">
 			<div
 				class="card-header"
-				id="headingThree">
+				id="headingFive">
 				<h5
 					class="mb-0">
 					<button
 						class="btn btn-link collapsed"
 						data-toggle="collapse"
-						data-target="#collapseThree"
+						data-target="#collapseFive"
 						aria-expanded="false"
-						aria-controls="collapseThree">
+						aria-controls="collapseFive">
 						Sons
 					</button>
 				</h5>
 			</div>
 			<div
-				id="collapseThree"
+				id="collapseFive"
 				class="collapse"
-				aria-labelledby="headingThree"
+				aria-labelledby="headingFive"
 				data-parent="#accordion">
 				<div
 					class="card-body">

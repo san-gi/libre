@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Article;
 use App\Entity\Chapitre;
 use App\Form\ChapitreType;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,10 +28,13 @@ class AdminController extends AbstractController
         //     // do anything else you need here, like send an email
         // }
         $chapitres = $this->getDoctrine()->getRepository(Chapitre::class)->findAll();
+        $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
+
 
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
             'chapitres' =>$chapitres,
+            'articles' =>$articles,
             // 'Chapitre' =>$form->createView()
         ]);
     }

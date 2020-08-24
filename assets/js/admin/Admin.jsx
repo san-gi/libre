@@ -12,10 +12,10 @@ function Messages({ id }) {
         content: "string",
     }
     const onDeleteCallback = useCallback(() => {
-
+        window.location.reload();
     }, [])
     const onSucess = useCallback(() => {
-
+        window.location.reload();
     }, [])
     const onSubmit = useCallback(e => {
 
@@ -41,8 +41,7 @@ function Messages({ id }) {
             type="button"
             className="btn btn-danger"
             data-dismiss="modal"
-            onClick={callDelete.bind(this, null)}
-        >
+            onClick={callDelete.bind(this, null)}>
             Supprimer										</button>
         <button
             type="button"
@@ -52,11 +51,7 @@ function Messages({ id }) {
     </div>
 }
 
-
 class MessagesElement extends HTMLElement {
-
-
-
     connectedCallback() {
         const id = this.dataset.id
         render(<Messages id={id} />, this)
@@ -66,14 +61,11 @@ class MessagesElement extends HTMLElement {
 customElements.define('form-adm', MessagesElement)
 
 
-
 function MakeChapter() {
-
     const onSucess = useCallback(() => {
-
+        window.location.reload();
     }, [])
     const onSubmit = useCallback(e => {
-
         e.preventDefault()
         console.log($("#ChapTitreMake").val())
         load({
@@ -86,21 +78,118 @@ function MakeChapter() {
     }, [load])
     const { load, loading } = useFetch('/api/chapitres', 'POST', onSucess)
     return <div>
-               
-         
-            </div>
-
+        <button onClick={onSubmit}
+            type="button"
+            className="btn btn-primary">
+            Make chapitre
+		</button>
+    </div>
 }
 class MakeChapterElement extends HTMLElement {
-
-
-
     connectedCallback() {
-
         render(<MakeChapter />, this)
     }
 }
 
 
-
 customElements.define('make-chapitre', MakeChapterElement)
+
+function MakeArticle() {
+    const onSucess = useCallback(() => {
+        window.location.reload();
+    }, [])
+    const onSubmit = useCallback(e => {
+        e.preventDefault()
+        console.log($("#ArtiTitreMake").val())
+        load({
+            titre: $("#ArtiTitreMake").val(),
+            couverture: $("#ArtiCouvertureMake").val(),
+            date: "2020-08-21T02:30:28.960Z",
+            content: $("#ArtiContentMake").val(),
+        })
+    }, [load])
+    const { load, loading } = useFetch('/api/articles', 'POST', onSucess)
+    return <div>
+        <button onClick={onSubmit}
+            type="button"
+            className="btn btn-primary">
+            Make Article
+		</button>
+    </div>
+}
+class MakeArticleElement extends HTMLElement {
+    connectedCallback() {
+        render(<MakeArticle />, this)
+    }
+}
+customElements.define('make-article', MakeArticleElement);
+
+
+function EditArticle({ id }) {
+    const Article = {
+        titre: "chalut",
+        couverture: "chalut",
+        date: "2020-08-21T02:30:28.960Z",
+        content: "string",
+    }
+    const onDeleteCallback = useCallback(() => {
+        window.location.reload();
+    }, [])
+    const onSucess = useCallback(() => {
+        window.location.reload();
+    }, [])
+    const onSubmit = useCallback(e => {
+
+        e.preventDefault()
+        load({
+            titre: $("#ArtiTitre" + id).val(),
+            couverture: $("#ArtiCouverture" + id).val(),
+            date: "2020-08-21T02:30:28.960Z",
+            content: $("#ArtiContent" + id).val(),
+        })
+    }, [load])
+
+    const { load, loading } = useFetch('/api/articles/' + id, 'PUT', onSucess)
+    const { loading: loadingDelete, load: callDelete } = useFetch('/api/articles/' + id, 'DELETE', onDeleteCallback)
+    return <div className="h-100">
+        <button
+            type="button"
+            className="btn btn-secondary"
+            data-dismiss="modal">
+            close										</button>
+        <button
+            type="button"
+            className="btn btn-danger"
+            data-dismiss="modal"
+            onClick={callDelete.bind(this, null)}>
+            Supprimer										</button>
+        <button
+            type="button"
+            className="btn btn-primary"
+            onClick={onSubmit}>
+            Edit Chapitre										</button>
+    </div>
+}
+
+class ArticleElement extends HTMLElement {
+    connectedCallback() {
+        const id = this.dataset.id
+        render(<EditArticle id={id} />, this)
+    }
+}
+
+customElements.define('form-arti', ArticleElement)
+
+function Drop(){
+    return <div id="DropImage">
+   
+</div>
+}
+class DropZone extends HTMLElement {
+    connectedCallback() {
+        const id = this.dataset.id
+        render(<Drop  />, this)
+    }
+}
+customElements.define('drop-zone', DropZone)
+
