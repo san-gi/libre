@@ -9,7 +9,7 @@ const VIEW = 'VIEW'
 const EDIT = 'EDIT'
 let somsg = true
 function Messages({ message, user }) {
-    const socket = io('192.168.1.10:3005', { jsomp: false });
+    const socket = io('https://oniric.eu:3005', { jsomp: false });
     const { items: messages, setItems: setMessages, load, loading } = useMessagesFetch('/api/messages')
     const addMessage = useCallback(message => {
         socket.emit("addMessage", message)

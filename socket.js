@@ -1,14 +1,17 @@
 var express = require('express'),
     cors = require('cors'),
-    app = express();
+    app = express(),
+    fs = require('fs');
 
 
 //-------parametre-------
-app.use(express.static('static')) //dossier static
-var serveur = require('https').createServer(app).listen(3005, () => {
-    console.log('CORS-enabled web server listening on port 3005')
-});
 
+var serveur = require('https').createServer({
+    key: fs.readFileSync('C:/Certbot/live/oniric.eu/privkey.pem'),
+    cert: fs.readFileSync('C:/Certbot/live/oniric.eu/fullchain.pem'),
+}, app).listen(3005, () => {
+    console.log('CORS-enabled web server listening on port 443')
+});
 app.use(cors()) //lancement cors
 app.get('/products/:id', (req, res, next) => {      //param cors
     res.json({ msg: 'This is CORS-enabled for all origins!' })
