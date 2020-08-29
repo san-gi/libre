@@ -109,13 +109,18 @@ post-p{
   
 
 
-#DropImage{
+#DropArea{
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    width: 800px;
-    height: 200px;
-    border: 4px dashed #4aa1f3;
+    border: 2px dashed #ccc;
+    border-radius: 20px;
+    width: 480px;
+    font-family: sans-serif;
+    margin: 100px auto;
+    padding: 20px;
 }
+#DropArea.highlight {
+    border-color: purple;
+  }
+  .my-form {
+    margin-bottom: 10px;
+  }

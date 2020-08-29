@@ -180,15 +180,31 @@ class ArticleElement extends HTMLElement {
 
 customElements.define('form-arti', ArticleElement)
 
-function Drop(){
-    return <div id="DropImage">
-   
-</div>
+
+function Drop() {
+    const onEnter = useCallback(() => {
+
+    })
+    const onLeave = useCallback(() => {
+
+    })
+    const onOver = useCallback(() => {
+
+    })
+    const onRop = useCallback(() => {
+
+    })
+    return <div id="DropArea" onDragEnter={onEnter} onDragLeave={onLeave} onDragOver={onOver} onDrop={onRop} >
+        <form class="my-form">
+            <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)" />
+            <label class="button" for="fileElem">Select some files</label></form>
+    </div>
 }
 class DropZone extends HTMLElement {
     connectedCallback() {
         const id = this.dataset.id
-        render(<Drop  />, this)
+        render(<Drop />, this)
     }
 }
 customElements.define('drop-zone', DropZone)

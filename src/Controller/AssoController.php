@@ -53,4 +53,3 @@ class AssoController extends AbstractController
         ]);
     }
 }
-}
