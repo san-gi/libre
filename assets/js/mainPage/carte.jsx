@@ -17,7 +17,7 @@ function Test({ num }) {
     }, [num])
     return (
         <div className="cardChapter " >
-        
+
             <div className="container h-100 w-50">
                 <div className="chapitreGran " id={"chapter-" + num}>
                     <h1> {chapter.titre}</h1>
@@ -37,32 +37,36 @@ function Content({ data }) {
     let rendue = "<div>";
     for (let i = 0; i < content.length; i++) {
         if (content[i][0] == "v")
-            rendue += '<video src=vid/'+content[i].split("-")[1]+'>sorry, le chargement de la vidéo a échouer</video>'
+            rendue += '<video src=vid/' + content[i].split("-")[1] + '>sorry, le chargement de la vidéo a échouer</video>'
         else if (content[i][0] == "i")
-            rendue += '<img class="img-fluid pt-3 pb-3" src=img/'+content[i].split("-")[1]+">sorry, le chargement de l'image a échouer</img>"
+            rendue += '<img class="img-fluid pt-3 pb-3" src=img/' + content[i].split("-")[1] + ">sorry, le chargement de l'image a échouer</img>"
         else
-            rendue+="<p class='text-justify '>"+content[i]+"</p>"
+            rendue += "<p class='text-justify '>" + content[i] + "</p>"
     }
-    rendue+="</div>"
-    console.log(rendue)
+    rendue += "</div>"
+
 
     return (
-        <div dangerouslySetInnerHTML={{__html: rendue}} />
+        <div dangerouslySetInnerHTML={{ __html: rendue }} />
     )
 }
 
 function Cartes({ num }) {
     const { items: chapter, setItems: setChapter, load, loading } = useChapitreFetch('/api/chapitres/' + num)
 
+    let vue = false
     function handleClick(e) {
-        document.getElementById("ChapitresBas").scrollIntoView({ behavior: 'smooth' })
-        
+        if (!vue) {
+            vue = true
+            const Chapitresbas = <div><div dangerouslySetInnerHTML={{ __html: $("#ChapitresBas").html() }} /><Test num={num} /></div>
+
+            ReactDOM.render(Chapitresbas, document.querySelector('#ChapitresBas'))
+        }
+        document.getElementById("chapter-"+num).scrollIntoView({ behavior: 'smooth' })
     }
-    const Chapitresbas = <Test num={num} />
 
-        ReactDOM.render(Chapitresbas, document.querySelector('#ChapitresBas'))
 
-   
+
     return (
         <div className="customcart" onClick={handleClick}>
 
@@ -74,7 +78,7 @@ function Cartes({ num }) {
 export class CarteHTML extends HTMLElement {
     connectedCallback() {
         const numbercarte = (this.dataset.numberchap)
-        console.log(numbercarte)
+
         render(<Cartes num={numbercarte} />, this)
     }
 }
