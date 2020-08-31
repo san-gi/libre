@@ -13,21 +13,41 @@ function Test({ num }) {
     useEffect(() => {
 
         load()
+
     }, [num])
     return (
         <div className="cardChapter " >
         
-                <img className="" src={"img/" + chapter.couverture} />
-         
-            <div className="container h-100 ">
-            <div className="chapitreGran" id={"chapter-" + num}>
+            <div className="container h-100 w-50">
+                <div className="chapitreGran " id={"chapter-" + num}>
+                    <h1> {chapter.titre}</h1>
+                    <img className="img-fluid" src={"img/" + chapter.couverture} />
+                    {<Content data={chapter.content} />}
 
 
-                <h1> {chapter.titre}</h1>
-                {chapter.content}
                 </div>
             </div>
         </div>
+    )
+}
+
+function Content({ data }) {
+    const data_content = data;
+    const content = typeof data_content === "string" ? data_content.split("#") : "";
+    let rendue = "<div>";
+    for (let i = 0; i < content.length; i++) {
+        if (content[i][0] == "v")
+            rendue += '<video src=vid/'+content[i].split("-")[1]+'>sorry, le chargement de la vidéo a échouer</video>'
+        else if (content[i][0] == "i")
+            rendue += '<img class="img-fluid pt-3 pb-3" src=img/'+content[i].split("-")[1]+">sorry, le chargement de l'image a échouer</img>"
+        else
+            rendue+="<p class='text-justify '>"+content[i]+"</p>"
+    }
+    rendue+="</div>"
+    console.log(rendue)
+
+    return (
+        <div dangerouslySetInnerHTML={{__html: rendue}} />
     )
 }
 
@@ -35,13 +55,14 @@ function Cartes({ num }) {
     const { items: chapter, setItems: setChapter, load, loading } = useChapitreFetch('/api/chapitres/' + num)
 
     function handleClick(e) {
-
-        const Chapitresbas = <Test num={num} />
+        document.getElementById("ChapitresBas").scrollIntoView({ behavior: 'smooth' })
+        
+    }
+    const Chapitresbas = <Test num={num} />
 
         ReactDOM.render(Chapitresbas, document.querySelector('#ChapitresBas'))
 
-        document.getElementById("ChapitresBas").scrollIntoView({ behavior: 'smooth' })
-    }
+   
     return (
         <div className="customcart" onClick={handleClick}>
 
@@ -62,7 +83,7 @@ class ImgFond extends Component {
     render() {
         return (
             <div className="headimagediv" >
-                <img className="headblog" src="img/path.jpg" alt="beautifull" />
+                <img className="headblog" src="img/nuage.jpg" alt="beautifull" />
             </div>
         )
     }

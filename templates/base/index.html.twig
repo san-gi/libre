@@ -1,23 +1,192 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html class="h-100">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="google-site-verification" content="uO9HIoaO26eYMPXIAKDPPTVcNXAo-GmsZibr1TVgxSc"/>
+		<title>
+			{% block title %}Oniric
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{{encore_entry_link_tags('app')}}
+		{% endblock %}
 
-{% block title %}Oniric{% endblock %}
+	</head>
+	<!-- CSS only -->
+	<link
+	rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<!-- JS, Popper.js, and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-<div class="d-flex justify-content-around">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-175357873-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+function gtag() {
+dataLayer.push(arguments);
+}
+gtag('js', new Date());
 
-			<div class="card CartChapter" style="width: 18rem;" id="cardChap2">
-	
-				<img class="card-img-top chapterImg" src="img/galaxy.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">oui</h5>
-					<p class="card-text">oui</p>
+gtag('config', 'UA-175357873-1');
+	</script>
+
+	<body class="bg-dark pt-4">
+		{% block body %}
+
+			<div class="container text-center bg-secondary p-3 shadow">
+				<div class="bg-light shadow p-3 mb-5">
+					<h2>Oniric</h2>
+					<h4>Comment réapprendre à rêver dans un monde insomniaque</h4>
+				</div>
+				<div class="bg-light shadow p-3">
+					<h3>Qui sommes nous ?</h3>
+					<p class=" mt-3 text-center text-break">L'association Oniric est une association libre et indépendante qui fournit des services gratuits.
+Elle est un organisme qui mène et soutient des projets alternatif respectueux de l'environnement.
+Son objectif est de sensibiliser, motiver et réaliser les rêves de ceux qui souhaites un monde dont l'Homme sera fière.</p>
+				</div>
+
+			</div>
+
+
+			<div class="container pt-5">
+				<nav class="navbar navbar-expand navbar-dark bg-dark">
+
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class=" collapse navbar-collapse" id="navbarNavAltMarkup">
+						<div class="navbar-nav mx-auto">
+							<div class=" nav-link dropdown">
+								<a class="nav-link dropdown" href="/Association">L'association</a>
+								<div class="dropdown-content">
+									<a href="/Association">Qui sommes nous ?</a>
+									<a href="/Projets">Les projets</a>
+									<a href="/Philosophie">Philosophie</a>
+									<a href="/Finances">Nos finances</a>
+									<a href="#">Contact</a>
+								</div>
+							</div>
+							<div class=" nav-link dropdown">
+								<a class="nav-link dropdown" href="/blog">l'épopée oniric</a>
+								<div class="dropdown-content">
+									<a href="/voyageurs">Les voyageurs</a>
+									<a href="/blog">Blog</a>
+									<a href="/live">Live</a>
+									<a href="#">Articles voyage</a>
+									<a href="#">Photos voyage</a>
+								</div>
+							</div>
+							<div class=" nav-link dropdown">
+								<a class="nav-link dropdown" href="/interview">Interview/article</a>
+								<div class="dropdown-content">
+									<a href="#">interview</a>
+									<a href="#">Articles</a>
+									<a href="#">Map</a>
+								</div>
+							</div>
+							<div class=" nav-link dropdown">
+								<a class="nav-link dropdown" href="/BD">BD project</a>
+								<div class="dropdown-content">
+									<a href="#">Le concept</a>
+									<a href="#">La BD</a>
+									<a href="#">Court Métrage</a>
+									<a href="#">Photos</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</nav>
+			</div>
+			<div class="bg-secondary mt-5 pt-5">
+				<h3 class=" text-center text-light">Actualités</h3>
+				<div class="container d-flex justify-content-around  flex-wrap ">
+					<a class="bg-light p-3 m-3 shadow" href="https://oniric.eu">
+						<h4 class="text-dark">Dernière Interview</h4>
+						<div class="card bg-dark text-white shadow-sm CartChapter">
+							<img class="chapterImg" src="img/ecu.jpg" alt="Card image cap">
+							<div class="card-img-overlay">
+								<post-p data-numberchap="1"></post-p>
+								<h5 class="card-title">Work in progress</h5>
+								<p class="card-text">Work in progress</p>
+							</div>
+						</div>
+					</a>
+					<a class="bg-light p-3 m-3 shadow" href="https://oniric.eu">
+						<h4 class="text-dark">Dernière Interview</h4>
+						<div class="card bg-dark text-white shadow-sm CartChapter">
+							<img class="chapterImg" src="img/ecu.jpg" alt="Card image cap">
+							<div class="card-img-overlay">
+								<post-p data-numberchap="1"></post-p>
+								<h5 class="card-title">Work in progress</h5>
+								<p class="card-text">Work in progress</p>
+							</div>
+						</div>
+					</a>
+					<a class="bg-light p-3 m-3 shadow" href="https://oniric.eu">
+						<h4 class="text-dark">Dernière Interview</h4>
+						<div class="card bg-dark text-white shadow-sm CartChapter">
+							<img class="chapterImg" src="img/ecu.jpg" alt="Card image cap">
+							<div class="card-img-overlay">
+								<post-p data-numberchap="1"></post-p>
+								<h5 class="card-title">Work in progress</h5>
+								<p class="card-text">Work in progress</p>
+							</div>
+						</div>
+					</a>
+					<a class="bg-light p-3 m-3 shadow" href="https://oniric.eu">
+						<h4 class="text-dark">Dernière Interview</h4>
+						<div class="card bg-dark text-white shadow-sm CartChapter">
+							<img class="chapterImg" src="img/ecu.jpg" alt="Card image cap">
+							<div class="card-img-overlay">
+								<post-p data-numberchap="1"></post-p>
+								<h5 class="card-title">Work in progress</h5>
+								<p class="card-text">Work in progress</p>
+							</div>
+						</div>
+					</a>
+
+
 				</div>
 			</div>
-   
-</div>
-{% endblock %}
+			<footer class="text-muted bg-dark" id="footer">
+				<div class="container pt-5 ">
+					<div class="row">
+						<div class="col-sm">
+							<h4>Oniric</h4>
+							<a class="text-light btn" href="Association">Qui sommes nous ?</a><br>
+							<a class="text-light btn" href="Projets">Les projets</a><br>
+							<a class="text-light btn" href="Philosophie">Philosophie</a><br>
+							<a class="text-light btn" href="Finances">Nos finances</a>
+
+						</div>
+						<div class="col-sm">
+							<h4>Les Projets</h4>
+							<a class="text-light btn" href="blog">Le grand voyage</a>
+							<br>
+							<a class="text-light btn" href="interview">interview</a>
+							<br>
+							<a class="text-light btn" href="BD">BD</a>
+
+						</div>
+						<div class="col-sm">
+							<h4>Contacts</h4>
+							<a class="text-light btn" href="mailto:mail@oniric.eu">mail@oniric.eu</a>
+						</div>
+
+					</div>
+					<div class="text-center pt-4 py-md-5 pt-md-5 border-top">Copyright © 2020 Oniric Tous droits réservés<a class="badge badge-light" href="/Mentions">mentions légales</a>
+						<a class="badge badge-light" href="confi">Politique de confidentialité</a>
+					</div>
+				</div>
+			</footer>
+		{% endblock %}
+		{% block javascripts %}
+			{{encore_entry_script_tags('app')}}
+		{% endblock %}
+	</body>
+</html></body></html></body></html></body></html>

@@ -31,3 +31,4 @@
 [Wed Aug 19 16:20:02.967374 2020] [core:error] [pid 69728:tid 1328] (20023)The given path was above the root path: [client 192.168.1.10:56094] AH00127: Cannot map GET / HTTP/1.1 to file, referer: http://test.local/register
 [Wed Aug 19 16:58:41.123812 2020] [core:error] [pid 65156:tid 1324] (20023)The given path was above the root path: [client 192.168.1.10:58535] AH00127: Cannot map GET / HTTP/1.1 to file
 [Sat Aug 22 12:54:46.994563 2020] [core:error] [pid 30316:tid 1312] (20023)The given path was above the root path: [client 192.168.1.10:59926] AH00127: Cannot map GET / HTTP/1.1 to file
+[Wed Aug 26 18:26:57.939612 2020] [cgi:error] [pid 38372:tid 1948] [client 115.85.32.210:39033] AH02811: script not found or unable to stat: C:/Apache24/cgi-bin/mainfunction.cgi

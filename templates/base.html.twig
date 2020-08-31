@@ -3,10 +3,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="google-site-verification" content="uO9HIoaO26eYMPXIAKDPPTVcNXAo-GmsZibr1TVgxSc" />
+		<meta name="google-site-verification" content="uO9HIoaO26eYMPXIAKDPPTVcNXAo-GmsZibr1TVgxSc"/>
 		<title>
-			{% block title %}
-			{% endblock %}
+			{% block title %}{% endblock %}
 		</title>
 		{% block stylesheets %}
 			{{encore_entry_link_tags('app')}}
@@ -42,42 +41,41 @@ gtag('config', 'UA-175357873-1');
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav mr-auto">
-				<div class=" nav-link dropdown">
-					<a class="nav-link dropdown"  href="/Association">L'association</a>
-					<div class="dropdown-content">
-						<a  href="/Association">Qui sommes nous ?</a>
-						<a href="/Projets">Les projets</a>
-						<a href="/Philosophie">Philosophie</a>
-						<a href="/Finances">Nos finances</a>
-						<a href="#">Contact</a>
+					<div class=" nav-link dropdown">
+						<a class="nav-link dropdown" href="/Association">L'association</a>
+						<div class="dropdown-content">
+							<a href="/Association">Qui sommes nous ?</a>
+							<a href="/Projets">Les projets</a>
+							<a href="/Philosophie">Philosophie</a>
+							<a href="/Finances">Nos finances</a>
+							<a href="#">Contact</a>
+						</div>
 					</div>
-				</div>
-				<div class=" nav-link dropdown">
-					<a class="nav-link dropdown"  href="/blog">Le grand voyage</a>
-					<div class="dropdown-content">
-						<a href="#">Les voyageurs</a>
-						<a href="#">Blog</a>
-						<a href="#">Live</a>
-						<a href="#">Nos conseil</a>
+					<div class=" nav-link dropdown">
+						<a class="nav-link dropdown" href="/blog">L'épopée Oniric</a>
+						<div class="dropdown-content">
+							<a href="/voyageurs">Les voyageurs</a>
+							<a href="/blog">Blog</a>
+							<a href="/live">Live</a>
+							<a href="#">Articles voyages</a>
+							<a href="#">Photos voyages</a>
+						</div>
 					</div>
-				</div>
-				<div class=" nav-link dropdown">
-					<a class="nav-link dropdown"  href="/interview">Interview/article</a>
-					<div class="dropdown-content">
-						<a href="#">interview</a>
-						<a href="#">Articles</a>
-						<a href="#">Map</a>
+					<div class=" nav-link dropdown">
+						<a class="nav-link dropdown" href="/interview">Interview/article</a>
+						<div class="dropdown-content">
+							<a href="#">interview</a>
+							<a href="#">Articles</a>
+							<a href="#">Map</a>
+						</div>
 					</div>
-				</div>	
-				<div class=" nav-link dropdown">
-					<a class="nav-link dropdown"  href="/BD" >BD project</a>
-					<div class="dropdown-content">
-						<a href="#">Le concept</a>
-						<a href="#">La BD</a>
-						<a href="#">Court Métrage</a>
-						<a href="#">Photos</a>
+					<div class=" nav-link dropdown">
+						<a class="nav-link dropdown" href="/BD">Fiction</a>
+						<div class="dropdown-content">
+							<a href="#">Dans l'ombre d'une époque</a>
+						
+						</div>
 					</div>
-				</div>
 				</div>
 				<div class="navbar-nav">
 					{% if app.user %}
@@ -96,28 +94,29 @@ gtag('config', 'UA-175357873-1');
 			<div class="container pt-5 ">
 				<div class="row">
 					<div class="col-sm">
-						<h4>Qui sommes nous ?</h4>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						<h4>Oniric</h4>
+						<a class="text-light btn"  href="Association">Qui sommes nous ?</a><br>
+						<a class="text-light btn"  href="Projets">Les projets</a><br>
+						<a class="text-light btn"  href="Philosophie">Philosophie</a><br>
+						<a class="text-light btn"  href="Finances">Nos finances</a>
+
 					</div>
 					<div class="col-sm">
-						<h4>Pourquoi ce blog ?</h4>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						<h4>Les Projets</h4>
+						<a class="text-light btn"  href="blog">Le grand voyage</a>
+						<br>
+						<a class="text-light btn"  href="interview">interview</a>
+						<br>
+						<a class="text-light btn"  href="BD">BD</a>
+			
 					</div>
 					<div class="col-sm">
-						Image d'illustration, qui au click méne en haut
+						<h4>Contacts</h4>
+						<a class="text-light btn"  href="mailto:mail@oniric.eu">mail@oniric.eu</a>
 					</div>
-				</div>
-
-
-			</div>
-			<div class="text-center pt-4 py-md-5 pt-md-5 border-top">Copyright © 2020 NOM a trouver Tous droits réservés
-				<a class="badge badge-light" href="/Mentions">mentions légales</a>
-				<a class="badge badge-light" href="confi">Politique de confidentialité</a>
-			</div>
-
-		</footer>
-		{% block javascripts %}
-			{{encore_entry_script_tags('app')}}
-		{% endblock %}
+				</body>
+			</html>
+		</div>
 	</body>
-</html></body></html>
+</html></div><div class="text-center pt-4 py-md-5 pt-md-5 border-top">Copyright © 2020 Oniric Tous droits réservés<a class="badge badge-light" href="/Mentions">mentions légales</a>
+<a class="badge badge-light" href="confi">Politique de confidentialité</a></div></footer>{% block javascripts %}{{encore_entry_script_tags('app')}}{% endblock %}</body></html></body></html>

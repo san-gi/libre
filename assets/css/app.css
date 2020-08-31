@@ -69,17 +69,12 @@ post-p{
 }
 #ChapitresBas{
     scroll-behavior: smooth;
-    height: 100vh;
 }
 .chapitreGran{
     z-index: 2;
-    top:0;
-    position: absolute;
+
 }
-.cardChapter{
-    position: relative;
-    width: 100%;
-}
+
 .dropdown {
     position: relative;
     display: inline-block;

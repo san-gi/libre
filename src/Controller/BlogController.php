@@ -15,9 +15,27 @@ class BlogController extends AbstractController
     {
         $chap = $this->getDoctrine()->getRepository(Chapitre::class);
         $chapitres = $chap->findAll();
-        return $this->render('blog/index.html.twig', [
+        return $this->render('blog/blog.html.twig', [
             'controller_name' => 'BlogController',
             'chapitres' => $chapitres,
+        ]);
+    }
+     /**
+     * @Route("/live", name="live")
+     */
+    public function live()
+    {
+        return $this->render('blog/live.html.twig', [
+            'controller_name' => 'LiveController',
+        ]);
+    }
+     /**
+     * @Route("/voyageurs", name="voyageurs")
+     */
+    public function voyageurs()
+    {
+        return $this->render('blog/voyageurs.html.twig', [
+            'controller_name' => 'LiveController',
         ]);
     }
 }
