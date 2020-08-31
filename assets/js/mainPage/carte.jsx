@@ -62,7 +62,8 @@ function Cartes({ num }) {
 
             ReactDOM.render(Chapitresbas, document.querySelector('#ChapitresBas'))
         }
-        document.getElementById("chapter-"+num).scrollIntoView({ behavior: 'smooth' })
+        setTimeout(function(){ document.getElementById("chapter-"+num).scrollIntoView({ behavior: 'smooth' }) }, 1000);
+        
     }
 
 
