@@ -274,6 +274,10 @@
 			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
 				<div class="card-body">
 
+					{{form_start(upload)}}
+					{{form_widget(upload)}}
+					<button class="btn">{{button_label|default('save')}}
+					{{form_end(upload)}}
 					<drop-zone classe="container"></drop-zone>
 
 				</div>
