@@ -1,5 +1,6 @@
 import { render } from 'react-dom'
 import ReactDOM from 'react-dom';
+import ReactDOMServer from 'react-dom/server';
 import React, { useState, useEffect, useRef, useCallback, Component } from 'react'
 import io from 'socket.io-client';
 import { useChapitreFetch } from '../messages/hooks'
@@ -16,9 +17,9 @@ function Test({ num }) {
 
     }, [num])
     return (
-        <div className="cardChapter " >
+        <div className="cardChapter  m-4" >
 
-            <div className="container h-100 w-50">
+            <div className="container bg-secondary p-5">
                 <div className="chapitreGran " id={"chapter-" + num}>
                     <h1> {chapter.titre}</h1>
                     <img className="img-fluid" src={"img/" + chapter.couverture} />
@@ -40,6 +41,8 @@ function Content({ data }) {
             rendue += '<video src=vid/' + content[i].split("-")[1] + '>sorry, le chargement de la vidéo a échouer</video>'
         else if (content[i][0] == "i")
             rendue += '<img class="img-fluid pt-3 pb-3" src=img/' + content[i].split("-")[1] + ">sorry, le chargement de l'image a échouer</img>"
+        else if (content[i][0] == "a")
+            rendue += '<req-article data-id="'+content[i].split("-")[1]+'></req-article>'
         else
             rendue += "<p class='text-justify '>" + content[i] + "</p>"
     }
@@ -50,9 +53,27 @@ function Content({ data }) {
         <div dangerouslySetInnerHTML={{ __html: rendue }} />
     )
 }
+function Art({id}){
+    const { items: chapter, setItems: setChapter, load, loading } = useChapitreFetch('/api/articles/' + id)
 
+    useEffect(() => {
+
+        load()
+
+    }, [id])
+
+    return <p>salut</p>
+}
+export class Article extends HTMLElement {
+    
+    connectedCallback() {
+        const id = (this.dataset.id)
+        render(<Art id={id}/>, this)
+    }
+}
+customElements.define('req-article', Article)
 function Cartes({ num }) {
-    const { items: chapter, setItems: setChapter, load, loading } = useChapitreFetch('/api/chapitres/' + num)
+    
 
     let vue = false
     function handleClick(e) {
@@ -62,8 +83,8 @@ function Cartes({ num }) {
 
             ReactDOM.render(Chapitresbas, document.querySelector('#ChapitresBas'))
         }
-        setTimeout(function(){ document.getElementById("chapter-"+num).scrollIntoView({ behavior: 'smooth' }) }, 1000);
-        
+        setTimeout(function () { document.getElementById("chapter-" + num).scrollIntoView({ behavior: 'smooth' }) }, 1000);
+
     }
 
 

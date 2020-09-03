@@ -5,99 +5,52 @@
 {% endblock %}
 
 {% block body %}
-	<button
-		type="button"
-		class="btn btn-primary"
-		data-toggle="modal"
-		data-target="#ChapMaker">
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ChapMaker">
 		Make Chapter
 	</button>
-	<div
-		class="modal fade bd-example-modal-lg"
-		id="ChapMaker"
-		tabindex="-1"
-		role="dialog"
-		aria-labelledby="myLargeModalLabel"
-		aria-hidden="true">
-		<div
-			class="modal-dialog modal-lg">
-			<div
-				class="modal-content">
-				<div
-					class="modal-header">
-					<h5
-						class="modal-title"
-						id="exampleModalLabel">
+	<div class="modal fade bd-example-modal-lg" id="ChapMaker" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">
 						Nouveau Chapitre
 					</h5>
-					<button
-						type="button"
-						class="close"
-						data-dismiss="modal"
-						aria-label="Close">
-						<span
-							aria-hidden="true">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">
 							&times;
 						</span>
 					</button>
 				</div>
-				<div
-					class="modal-body">
+				<div class="modal-body">
 					<form>
-						<div
-							class="form-group">
-							<label
-
-								class="col-form-label">
+						<div class="form-group">
+							<label class="col-form-label">
 								Titre
 							</label>
-							<input
-								type="text"
-								class="form-control"
-								id="ChapTitreMake"/>
+							<input type="text" class="form-control" id="ChapTitreMake"/>
 						</div>
-						<div
-							class="form-group">
-							<label
-
-								class="col-form-label">
+						<div class="form-group">
+							<label class="col-form-label">
 								Image
 							</label>
-							<input
-								type="text"
-								class="form-control"
-								id="ChapCouvertureMake"/>
+							<input type="text" class="form-control" id="ChapCouvertureMake"/>
 						</div>
-						<div
-							class="form-group">
-							<label
-
-								class="col-form-label">
+						<div class="form-group">
+							<label class="col-form-label">
 								firstParag
 							</label>
-							<textarea
-								class="form-control"
-								id="ChapFirstParagMake"></textarea>
+							<textarea class="form-control" id="ChapFirstParagMake"></textarea>
 						</div>
-						<div
-							class="form-group">
-							<label
-
-								class="col-form-label">
+						<div class="form-group">
+							<label class="col-form-label">
 								Contenue
 							</label>
-							<textarea
-								class="form-control"
-								id="ChapContentMake"></textarea>
+							<textarea class="form-control" id="ChapContentMake"></textarea>
 						</div>
 					</form>
 				</div>
-				<div
-					class="modal-footer">
-					<button
-						type="button"
-						class="btn btn-secondary"
-						data-dismiss="modal">
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
 						Close
 					</button>
 					<make-chapitre></make-chapitre>
@@ -107,89 +60,47 @@
 		</div>
 
 	</div>
-	<button
-		type="button"
-		class="btn btn-primary"
-		data-toggle="modal"
-		data-target="#ArtiMaker">
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ArtiMaker">
 		Make Article
 	</button>
-	<div
-		class="modal fade bd-example-modal-lg"
-		id="ArtiMaker"
-		tabindex="-1"
-		role="dialog"
-		aria-labelledby="myLargeModalLabel"
-		aria-hidden="true">
-		<div
-			class="modal-dialog modal-lg">
-			<div
-				class="modal-content">
-				<div
-					class="modal-header">
-					<h5
-						class="modal-title"
-						id="exampleModalLabel">
+	<div class="modal fade bd-example-modal-lg" id="ArtiMaker" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">
 						Nouveau Article
 					</h5>
-					<button
-						type="button"
-						class="close"
-						data-dismiss="modal"
-						aria-label="Close">
-						<span
-							aria-hidden="true">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">
 							&times;
 						</span>
 					</button>
 				</div>
-				<div
-					class="modal-body">
+				<div class="modal-body">
 					<form>
-						<div
-							class="form-group">
-							<label
-
-								class="col-form-label">
+						<div class="form-group">
+							<label class="col-form-label">
 								Titre
 							</label>
-							<input
-								type="text"
-								class="form-control"
-								id="ArtiTitreMake"/>
+							<input type="text" class="form-control" id="ArtiTitreMake"/>
 						</div>
-						<div
-							class="form-group">
-							<label
-
-								class="col-form-label">
+						<div class="form-group">
+							<label class="col-form-label">
 								Image
 							</label>
-							<input
-								type="text"
-								class="form-control"
-								id="ArtiCouvertureMake"/>
+							<input type="text" class="form-control" id="ArtiCouvertureMake"/>
 						</div>
 
-						<div
-							class="form-group">
-							<label
-
-								class="col-form-label">
+						<div class="form-group">
+							<label class="col-form-label">
 								Contenue
 							</label>
-							<textarea
-								class="form-control"
-								id="ArtiContentMake"></textarea>
+							<textarea class="form-control" id="ArtiContentMake"></textarea>
 						</div>
 					</form>
 				</div>
-				<div
-					class="modal-footer">
-					<button
-						type="button"
-						class="btn btn-secondary"
-						data-dismiss="modal">
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
 						Close
 					</button>
 					<make-article></make-article>
@@ -197,146 +108,81 @@
 			</div>
 		</div>
 	</div>
-	<div
-		id="accordion">
-		<div
-			class="card">
-			<div
-				class="card-header"
-				id="headingOne">
-				<h5
-					class="mb-0">
-					<button
-						class="btn btn-link"
-						data-toggle="collapse"
-						data-target="#collapseOne"
-						aria-expanded="true"
-						aria-controls="collapseOne">
+	<div id="accordion">
+		<div class="card">
+			<div class="card-header" id="headingOne">
+				<h5 class="mb-0">
+					<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 						Chapitres
 					</button>
 				</h5>
 			</div>
 
-			<div
-				id="collapseOne"
-				class="collapse show"
-				aria-labelledby="headingOne"
-				data-parent="#accordion">
-				<div
-					class="card-body">
-					<div
-						class="d-flex justify-content-around  flex-wrap">
+			<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+				<div class="card-body">
+					<div class="d-flex justify-content-around  flex-wrap">
 						{% for chapitre in chapitres %}
-							<div
-								class="card bg-dark text-white shadow-sm CartChapter"
-								id="cardChap{{chapitre.id}}"
-								data-toggle="modal"
-								data-target="#Chap{{chapitre.id}}">
-								<img
-									class="chapterImg"
-									src="img/{{chapitre.couverture}}"
-									alt="Card image cap">
-								<div
-									class="card-img-overlay">
-									<h5
-										class="card-title">
-										{{chapitre.titre}}
-									</h5>
-									<p
-										class="card-text">
-										{{chapitre.firstParag}}
-									</p>
+							<div>
+								<p>Integration : #art-{{chapitre.id}}#</p>
+								<div class="card bg-dark text-white shadow-sm CartChapter" id="cardChap{{chapitre.id}}" data-toggle="modal" data-target="#Chap{{chapitre.id}}">
+									<img class="chapterImg" src="img/{{chapitre.couverture}}" alt="Card image cap">
+									<div class="card-img-overlay">
+										<h5 class="card-title">
+											{{chapitre.titre}}
+										</h5>
+										<p class="card-text">
+											{{chapitre.firstParag}}
+										</p>
+									</div>
 								</div>
 							</div>
-							<div
-								class="modal fade bd-example-modal-lg"
-								id="Chap{{chapitre.id}}"
-								tabindex="-1"
-								role="dialog"
-								aria-labelledby="myLargeModalLabel"
-								aria-hidden="true">
-								<div
-									class="modal-dialog modal-lg">
-									<div
-										class="modal-content">
-										<div
-											class="modal-header">
-											<h5
-												class="modal-title"
-												id="exampleModalLabel">
+							<div class="modal fade bd-example-modal-lg" id="Chap{{chapitre.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-lg">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">
 												Chapitre :
 												{{chapitre.titre}}
 											</h5>
-											<button
-												type="button"
-												class="close"
-												data-dismiss="modal"
-												aria-label="Close">
-												<span
-													aria-hidden="true">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">
 													&times;
 												</span>
 											</button>
 										</div>
-										<div
-											class="modal-body">
+										<div class="modal-body">
 											<form>
-												<div
-													class="form-group">
-													<label
-
-														class="col-form-label">
+												<div class="form-group">
+													<label class="col-form-label">
 														Titre
 													</label>
-													<input
-														type="text"
-														class="form-control"
-														id="ChapTitre{{chapitre.id}}"
-														value="{{chapitre.titre}}">
+													<input type="text" class="form-control" id="ChapTitre{{chapitre.id}}" value="{{chapitre.titre}}">
 												</div>
-												<div
-													class="form-group">
-													<label
-
-														class="col-form-label">
+												<div class="form-group">
+													<label class="col-form-label">
 														Image
 													</label>
-													<input
-														type="text"
-														class="form-control"
-														id="ChapCouverture{{chapitre.id}}"
-														value="{{chapitre.couverture}}">
+													<input type="text" class="form-control" id="ChapCouverture{{chapitre.id}}" value="{{chapitre.couverture}}">
 												</div>
-												<div
-													class="form-group">
-													<label
-
-														class="col-form-label">
+												<div class="form-group">
+													<label class="col-form-label">
 														firstParag
 													</label>
-													<textarea
-														class="form-control"
-														id="ChapFirstParag{{chapitre.id}}">
+													<textarea class="form-control" id="ChapFirstParag{{chapitre.id}}">
 														{{chapitre.firstParag}}
 													</textarea>
 												</div>
-												<div
-													class="form-group">
-													<label
-
-														class="col-form-label">
+												<div class="form-group">
+													<label class="col-form-label">
 														Contenue
 													</label>
-													<textarea
-														class="form-control"
-														id="ChapContent{{chapitre.id}}">
+													<textarea class="form-control" id="ChapContent{{chapitre.id}}">
 														{{chapitre.content}}
 													</textarea>
 												</div>
 											</form>
 										</div>
-										<form-adm
-											data-id="{{chapitre.id}}"></form-adm>
+										<form-adm data-id="{{chapitre.id}}"></form-adm>
 									</div>
 								</div>
 							</div>
@@ -346,127 +192,67 @@
 				</div>
 			</div>
 		</div>
-		<div
-			class="card">
-			<div
-				class="card-header"
-				id="headingTwo">
-				<h5
-					class="mb-0">
-					<button
-						class="btn btn-link collapsed"
-						data-toggle="collapse"
-						data-target="#collapseTwo"
-						aria-expanded="false"
-						aria-controls="collapseTwo">
+		<div class="card">
+			<div class="card-header" id="headingTwo">
+				<h5 class="mb-0">
+					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
 						Articles
 					</button>
 				</h5>
 			</div>
-			<div
-				id="collapseTwo"
-				class="collapse"
-				aria-labelledby="headingTwo"
-				data-parent="#accordion">
-				<div
-					class="card-body">
-					<div
-						class="d-flex justify-content-around  flex-wrap">
+			<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+				<div class="card-body">
+					<div class="d-flex justify-content-around  flex-wrap">
 						{% for article in articles %}
-							<div
-								class="card bg-dark text-white shadow-sm CartChapter"
-								id="cardChap{{article.id}}"
-								data-toggle="modal"
-								data-target="#Arti{{article.id}}">
-								<img
-									class="chapterImg"
-									src="img/{{article.couverture}}"
-									alt="Card image cap">
-								<div
-									class="card-img-overlay">
-									<h5
-										class="card-title">
-										{{article.titre}}
-									</h5>
+							<div>
+								<p>Integration : #art-{{article.id}}#</p>
+								<div class="card bg-dark text-white shadow-sm CartChapter" id="cardChap{{article.id}}" data-toggle="modal" data-target="#Arti{{article.id}}">
+
+									<img class="chapterImg" src="img/{{article.couverture}}" alt="Card image cap">
+									<div class="card-img-overlay">
+										<h3 class="card-title">
+											{{article.titre}}
+										</h3>
+									</div>
 								</div>
 							</div>
-
-							<div
-								class="modal fade"
-								id="Arti{{article.id}}"
-								tabindex="-1"
-								role="dialog"
-								aria-labelledby="exampleModalLabel"
-								aria-hidden="true">
-								<div
-									class="modal-dialog"
-									role="document">
-									<div
-										class="modal-content">
-										<div
-											class="modal-header">
-											<h5
-												class="modal-title">
+							<div class="modal fade" id="Arti{{article.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">
 												Chapitre :
 												{{article.titre}}
 											</h5>
-											<button
-												type="button"
-												class="close"
-												data-dismiss="modal"
-												aria-label="Close">
-												<span
-													aria-hidden="true">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">
 													&times;
 												</span>
 											</button>
 										</div>
-										<div
-											class="modal-body">
+										<div class="modal-body">
 											<form>
-												<div
-													class="form-group">
-													<label
-
-														class="col-form-label">
+												<div class="form-group">
+													<label class="col-form-label">
 														Titre
 													</label>
-													<input
-														type="text"
-														class="form-control"
-														id="ArtiTitre{{article.id}}"
-														value="{{article.titre}}" />
+													<input type="text" class="form-control" id="ArtiTitre{{article.id}}" value="{{article.titre}}"/>
 												</div>
-												<div
-													class="form-group">
-													<label
-
-														class="col-form-label">
+												<div class="form-group">
+													<label class="col-form-label">
 														Image
 													</label>
-													<input
-														type="text"
-														class="form-control"
-														id="ArtiCouverture{{article.id}}"
-														value="{{article.couverture}}" />
+													<input type="text" class="form-control" id="ArtiCouverture{{article.id}}" value="{{article.couverture}}"/>
 												</div>
 
-												<div
-													class="form-group">
-													<label
-
-														class="col-form-label">
-														
-													</label>
-													<textarea
-														class="form-control"
-														id="ArtiContent{{article.id}}">{{article.content}}</textarea>
+												<div class="form-group">
+													<label class="col-form-label"></label>
+													<textarea class="form-control" id="ArtiContent{{article.id}}">{{article.content}}</textarea>
 												</div>
 											</form>
 										</div>
-										<div
-											class="modal-footer">
-											<form-arti data-id="{{article.id}}" ></form-arti>
+										<div class="modal-footer">
+											<form-arti data-id="{{article.id}}"></form-arti>
 										</div>
 									</div>
 								</div>
@@ -477,114 +263,64 @@
 				</div>
 			</div>
 		</div>
-		<div
-			class="card">
-			<div
-				class="card-header"
-				id="headingThree">
-				<h5
-					class="mb-0">
-					<button
-						class="btn btn-link collapsed"
-						data-toggle="collapse"
-						data-target="#collapseThree"
-						aria-expanded="false"
-						aria-controls="collapseThree">
+		<div class="card">
+			<div class="card-header" id="headingThree">
+				<h5 class="mb-0">
+					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
 						Images
 					</button>
 				</h5>
 			</div>
-			<div
-				id="collapseThree"
-				class="collapse"
-				aria-labelledby="headingThree"
-				data-parent="#accordion">
-				<div
-					class="card-body">
-				
-						<drop-zone  classe="container"></drop-zone>
-				
+			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+				<div class="card-body">
+
+					<drop-zone classe="container"></drop-zone>
+
 				</div>
 			</div>
 		</div>
-		<div
-			class="card">
-			<div
-				class="card-header"
-				id="headingFour">
-				<h5
-					class="mb-0">
-					<button
-						class="btn btn-link collapsed"
-						data-toggle="collapse"
-						data-target="#collapseFour"
-						aria-expanded="false"
-						aria-controls="collapseFour">
+		<div class="card">
+			<div class="card-header" id="headingFour">
+				<h5 class="mb-0">
+					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
 						Videos
 					</button>
 				</h5>
 			</div>
-			<div
-				id="collapseFour"
-				class="collapse"
-				aria-labelledby="headingFour"
-				data-parent="#accordion">
-				<div
-					class="card-body">
-					<div
-						class="d-flex flex-row">
-						<div
-							class="p-2">
+			<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+				<div class="card-body">
+					<div class="d-flex flex-row">
+						<div class="p-2">
 							Flex item 1
 						</div>
-						<div
-							class="p-2">
+						<div class="p-2">
 							Flex item 2
 						</div>
-						<div
-							class="p-2">
+						<div class="p-2">
 							Flex item 3
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div
-			class="card">
-			<div
-				class="card-header"
-				id="headingFive">
-				<h5
-					class="mb-0">
-					<button
-						class="btn btn-link collapsed"
-						data-toggle="collapse"
-						data-target="#collapseFive"
-						aria-expanded="false"
-						aria-controls="collapseFive">
+		<div class="card">
+			<div class="card-header" id="headingFive">
+				<h5 class="mb-0">
+					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
 						Sons
 					</button>
 				</h5>
 			</div>
-			<div
-				id="collapseFive"
-				class="collapse"
-				aria-labelledby="headingFive"
-				data-parent="#accordion">
-				<div
-					class="card-body">
-					<div
-						class="d-flex flex-row">
-						<div
-							class="p-2">
+			<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+				<div class="card-body">
+					<div class="d-flex flex-row">
+						<div class="p-2">
 							Flex item 1
 						</div>
-						<div
-							class="p-2">
+						<div class="p-2">
 							Flex item 2
 						</div>
-						<div
-							class="p-2">
+						<div class="p-2">
 							Flex item 3
 						</div>
 					</div>
