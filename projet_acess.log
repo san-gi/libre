@@ -3512,3 +3512,5 @@
 185.100.109.62 - - [22/Sep/2020:12:28:04 +0200] "GET / HTTP/1.1" 302 217 "-" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
 167.248.133.51 - - [22/Sep/2020:12:33:43 +0200] "GET / HTTP/1.1" 302 217 "-" "-"
 167.248.133.51 - - [22/Sep/2020:12:33:43 +0200] "GET / HTTP/1.1" 302 214 "-" "Mozilla/5.0 (compatible; CensysInspect/1.1; +https://about.censys.io/)"
+52.142.47.3 - - [22/Sep/2020:14:29:48 +0200] "GET /.env HTTP/1.1" 302 214 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36"
+52.142.47.3 - - [22/Sep/2020:14:29:48 +0200] "POST / HTTP/1.1" 302 214 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36"

@@ -7,6 +7,8 @@ n
 /public/bundles/
 /var/
 /vendor/
+/public/img/
+/public/vid/
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
