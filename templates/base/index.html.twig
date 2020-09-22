@@ -55,13 +55,13 @@ gtag('config', 'UA-175357873-1');
 					</h3>
 					<p class=" mt-3 text-center text-break">
 						L'association Oniric est une association libre et indépendante qui fournit des services gratuits.
-																																																																		Elle est un organisme qui mène et soutient des projets alternatif respectueux de l'environnement.
-																																																																		Son objectif est de sensibiliser, motiver et réaliser les rêves de ceux qui souhaites un monde dont l'Homme sera fière.
+																																																																								Elle est un organisme qui mène et soutient des projets alternatif respectueux de l'environnement.
+																																																																								Son objectif est de sensibiliser, motiver et réaliser les rêves de ceux qui souhaites un monde dont l'Homme sera fière.
 					</p>
 				</div>
 
 			</div>
-		
+
 			<div class="container pt-5">
 				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
@@ -99,12 +99,10 @@ gtag('config', 'UA-175357873-1');
 								</div>
 							</div>
 							<div class=" nav-link dropdown">
-								<a class="nav-link dropdown" href="/BD">BD project</a>
+								<a class="nav-link dropdown" href="/BD">Fiction</a>
 								<div class="dropdown-content">
-									<a href="#">Le concept</a>
-									<a href="#">La BD</a>
-									<a href="#">Court Métrage</a>
-									<a href="#">Photos</a>
+									<a href="#">Dans l'ombre d'une époque</a>
+
 								</div>
 							</div>
 						</div>
@@ -119,9 +117,41 @@ gtag('config', 'UA-175357873-1');
 		Actualités
 	</h3>
 	<div class="container d-flex justify-content-around  flex-wrap ">
+		<a class="bg-light p-3 m-3 shadow" href="https://oniric.eu/blog">
+			<h4 class="text-dark text-center">
+				{{chapitre.titre}}
+			</h4>
+			<div class="card bg-dark text-white shadow-sm CartChapter">
+				<img class="chapterImg" src="img/{{chapitre.couverture}}" alt="Card image cap">
+				<div class="card-img-overlay">
+					<post-p data-numberchap="1"></post-p>
+					<h5 class="card-title">
+						{{chapitre.titre}}
+					</h5>
+					<p class="card-text">
+						{{chapitre.firstparag}}
+					</p>
+				</div>
+			</div>
+		</a>
 		<a class="bg-light p-3 m-3 shadow" href="https://oniric.eu">
 			<h4 class="text-dark text-center">
-				Dernier chapitre
+				{{article.titre}}
+			</h4>
+			<div class="card bg-dark text-white shadow-sm CartChapter">
+				<img class="chapterImg" src="img/{{article.couverture}}" alt="Card image cap">
+				<div class="card-img-overlay">
+					<post-p data-numberchap="1"></post-p>
+					<h5 class="card-title">
+						{{article.titre}}
+					</h5>
+
+				</div>
+			</div>
+		</a>
+		<a class="bg-light p-3 m-3 shadow" href="https://oniric.eu">
+			<h4 class="text-dark text-center">
+				Dernière Interview
 			</h4>
 			<div class="card bg-dark text-white shadow-sm CartChapter">
 				<img class="chapterImg" src="img/ecu.jpg" alt="Card image cap">
@@ -131,48 +161,14 @@ gtag('config', 'UA-175357873-1');
 						Work in progress
 					</h5>
 					<p class="card-text">
-						Work in progress
+						Comment ça, il n'y a pas encore d'interview ? halala..
 					</p>
 				</div>
 			</div>
 		</a>
 		<a class="bg-light p-3 m-3 shadow" href="https://oniric.eu">
 			<h4 class="text-dark text-center">
-				Dernier article
-			</h4>
-			<div class="card bg-dark text-white shadow-sm CartChapter">
-				<img class="chapterImg" src="img/ecu.jpg" alt="Card image cap">
-				<div class="card-img-overlay">
-					<post-p data-numberchap="1"></post-p>
-					<h5 class="card-title">
-						Work in progress
-					</h5>
-					<p class="card-text">
-						Work in progress
-					</p>
-				</div>
-			</div>
-		</a>
-		<a class="bg-light p-3 m-3 shadow" href="https://oniric.eu">
-			<h4 class="text-dark text-center">
-				Dernier Interview
-			</h4>
-			<div class="card bg-dark text-white shadow-sm CartChapter">
-				<img class="chapterImg" src="img/ecu.jpg" alt="Card image cap">
-				<div class="card-img-overlay">
-					<post-p data-numberchap="1"></post-p>
-					<h5 class="card-title">
-						Work in progress
-					</h5>
-					<p class="card-text">
-						Comment ça, il n'y a pas encore d'épisode d'interview ? halala..
-					</p>
-				</div>
-			</div>
-		</a>
-		<a class="bg-light p-3 m-3 shadow" href="https://oniric.eu">
-			<h4 class="text-dark text-center">
-				Dernière episoede fiction
+				Dernier episode de fiction
 			</h4>
 			<div class="card bg-dark text-white shadow-sm CartChapter">
 				<img class="chapterImg" src="img/ecu.jpg" alt="Card image cap">

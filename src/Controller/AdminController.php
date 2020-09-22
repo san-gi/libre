@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Chapitre;
+use App\Entity\User;
 use App\Entity\Image;
 use App\Form\ChapitreType;
 use App\Form\UploadimageType;
@@ -37,12 +38,12 @@ class AdminController extends AbstractController
         );
     }
 
-        //     $chapitre->setDate(new \DateTime());
-            //  $entityManager = $this->getDoctrine()->getManager();
-            //  $entityManager->persist($chapitre);
-            //  $entityManager->flush();
-        //     // do anything else you need here, like send an email
+   
          }
+         $img = glob('img/*');
+         $vid = glob('vid/*');
+         $snd = glob('sound/*');
+         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
         $chapitres = $this->getDoctrine()->getRepository(Chapitre::class)->findAll();
         $articles = $this->getDoctrine()->getRepository(Article::class)->findAll();
 
@@ -51,7 +52,11 @@ class AdminController extends AbstractController
             'controller_name' => 'AdminController',
             'chapitres' =>$chapitres,
             'articles' =>$articles,
-             'upload' =>$form->createView()
+            'upload' =>$form->createView(),
+            'imgs' =>$img,
+            'vids' =>$vid,
+            'snds' =>$snd,
+            'users' =>$users,
         ]);
     }
 }

@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * 
  * @ApiResource(
  *      collectionOperations={},
- *      itemOperations={"get"}
+ *      itemOperations={"get","delete","put"},
  * )
  */
 class User implements UserInterface
@@ -27,6 +27,7 @@ class User implements UserInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      * @Groups({"readMessage"})
+     * @Groups({"readChapter"})
      */
     private $id;
 
@@ -55,6 +56,7 @@ class User implements UserInterface
      * 
      * @ORM\Column(type="string", length=255)
      * @Groups({"readMessage"})
+     * @Groups({"readChapter"})
      */
     private $username;
 
@@ -64,9 +66,31 @@ class User implements UserInterface
      */
     private $messages;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $picture;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Bio;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="Author")
+     */
+    private $articles;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Chapitre::class, mappedBy="author")
+     */
+    private $chapitres;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->articles = new ArrayCollection();
+        $this->chapitres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -192,6 +216,92 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($message->getAuthor() === $this) {
                 $message->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getBio(): ?string
+    {
+        return $this->Bio;
+    }
+
+    public function setBio(?string $Bio): self
+    {
+        $this->Bio = $Bio;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->contains($article)) {
+            $this->articles->removeElement($article);
+            // set the owning side to null (unless already changed)
+            if ($article->getAuthor() === $this) {
+                $article->setAuthor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Chapitre[]
+     */
+    public function getChapitres(): Collection
+    {
+        return $this->chapitres;
+    }
+
+    public function addChapitre(Chapitre $chapitre): self
+    {
+        if (!$this->chapitres->contains($chapitre)) {
+            $this->chapitres[] = $chapitre;
+            $chapitre->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChapitre(Chapitre $chapitre): self
+    {
+        if ($this->chapitres->contains($chapitre)) {
+            $this->chapitres->removeElement($chapitre);
+            // set the owning side to null (unless already changed)
+            if ($chapitre->getAuthor() === $this) {
+                $chapitre->setAuthor(null);
             }
         }
 

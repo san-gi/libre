@@ -123,7 +123,7 @@
 					<div class="d-flex justify-content-around  flex-wrap">
 						{% for chapitre in chapitres %}
 							<div>
-								<p>Integration : #art-{{chapitre.id}}#</p>
+						
 								<div class="card bg-dark text-white shadow-sm CartChapter" id="cardChap{{chapitre.id}}" data-toggle="modal" data-target="#Chap{{chapitre.id}}">
 									<img class="chapterImg" src="img/{{chapitre.couverture}}" alt="Card image cap">
 									<div class="card-img-overlay">
@@ -163,7 +163,24 @@
 														Image
 													</label>
 													<input type="text" class="form-control" id="ChapCouverture{{chapitre.id}}" value="{{chapitre.couverture}}">
+
 												</div>
+												{% if chapitre.author %}
+												<div class="form-group">
+													<label class="col-form-label">
+														Author :
+														{{chapitre.author.username}}
+													</label>
+													<input type="text" class="form-control" id="ArtiCouverture{{chapitre.id}}" value="/api/users/{{chapitre.author.id}}"/>
+												</div>
+												{% else %}
+												<div class="form-group">
+													<label class="col-form-label">
+														Author : Non définie
+													</label>
+													<input type="text" class="form-control" id="ArtiCouverture{{chapitre.id}}" value="/api/users/"/>
+												</div>
+												{% endif %}
 												<div class="form-group">
 													<label class="col-form-label">
 														firstParag
@@ -224,6 +241,7 @@
 												Chapitre :
 												{{article.titre}}
 											</h5>
+
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">
 													&times;
@@ -233,6 +251,7 @@
 										<div class="modal-body">
 											<form>
 												<div class="form-group">
+
 													<label class="col-form-label">
 														Titre
 													</label>
@@ -244,7 +263,13 @@
 													</label>
 													<input type="text" class="form-control" id="ArtiCouverture{{article.id}}" value="{{article.couverture}}"/>
 												</div>
-
+												<div class="form-group">
+													<label class="col-form-label">
+														Author :
+														{{article.author.username}}
+													</label>
+													<input type="text" class="form-control" id="ArtiCouverture{{article.id}}" value="/api/users/{{article.author.id}}"/>
+												</div>
 												<div class="form-group">
 													<label class="col-form-label"></label>
 													<textarea class="form-control" id="ArtiContent{{article.id}}">{{article.content}}</textarea>
@@ -273,12 +298,47 @@
 			</div>
 			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
 				<div class="card-body">
+					<div class="d-flex justify-content-around  flex-wrap">
+						{% set increment = 1 %}
+						{% for img in imgs %}
+							{% set imgsplit = img|split('/') %}
+							<div>
+								<p>Integration : #img-{{imgsplit[1]}}#</p>
+								<div class="card bg-dark text-white shadow-sm CartChapter" id="cardChap{{imgsplit[1]}}" data-toggle="modal" data-target="#img{{increment}}">
 
-					{{form_start(upload)}}
-					{{form_widget(upload)}}
-					<button class="btn">{{button_label|default('save')}}
-					{{form_end(upload)}}
-					<drop-zone classe="container"></drop-zone>
+									<img class="chapterImg" src="{{img}}" alt="Card image cap">
+									<div class="card-img-overlay">
+										<h3 class="card-title">
+											{{imgsplit[1]}}
+										</h3>
+									</div>
+								</div>
+							</div>
+
+							<!-- Modal -->
+							<div class="modal fade" id="img{{increment}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											...
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save changes</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% set increment = increment + 1 %}
+						{% endfor %}
+
+					</div>
 
 				</div>
 			</div>
@@ -293,16 +353,23 @@
 			</div>
 			<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
 				<div class="card-body">
-					<div class="d-flex flex-row">
-						<div class="p-2">
-							Flex item 1
-						</div>
-						<div class="p-2">
-							Flex item 2
-						</div>
-						<div class="p-2">
-							Flex item 3
-						</div>
+					<div class="d-flex justify-content-around  flex-wrap">
+						{% for vid in vids %}
+							<div>
+								<p>Integration : #img-{{vid}}#</p>
+								<div class="card bg-dark text-white shadow-sm CartChapter" data-toggle="modal">
+
+									<img class="chapterImg" src="{{vid}}" alt="Card image cap">
+									<div class="card-img-overlay">
+										<h3 class="card-title">
+											{{vid}}
+										</h3>
+									</div>
+								</div>
+							</div>
+
+						{% endfor %}
+
 					</div>
 				</div>
 			</div>
@@ -317,16 +384,103 @@
 			</div>
 			<div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
 				<div class="card-body">
-					<div class="d-flex flex-row">
-						<div class="p-2">
-							Flex item 1
-						</div>
-						<div class="p-2">
-							Flex item 2
-						</div>
-						<div class="p-2">
-							Flex item 3
-						</div>
+					<div class="d-flex justify-content-around  flex-wrap">
+						{% for snd in snds %}
+							<div>
+								<p>Integration : #img-{{snd}}#</p>
+								<div class="card bg-dark text-white shadow-sm CartChapter" data-toggle="modal">
+
+									<img class="chapterImg" src="{{snd}}" alt="Card image cap">
+									<div class="card-img-overlay">
+										<h3 class="card-title">
+											{{snd}}
+										</h3>
+									</div>
+								</div>
+							</div>
+
+						{% endfor %}
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header" id="headingSix">
+				<h5 class="mb-0">
+					<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+						Uers
+					</button>
+				</h5>
+			</div>
+			<div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+				<div class="card-body">
+					<div class="d-flex justify-content-around  flex-wrap">
+						{% for user in users %}
+							<div>
+								<p>Integration : #user-{{user.id}}#</p>
+								<div class="card bg-dark text-white shadow-sm CartChapter" id="cardUser{{user.id}}" data-toggle="modal" data-target="#User{{user.id}}">
+
+									<img class="chapterImg" src="img/{{user.picture}}" alt="Card image cap">
+									<div class="card-img-overlay">
+										<h3 class="card-title">
+											{{user.username}}
+										</h3>
+									</div>
+								</div>
+							</div>
+							<div class="modal fade" id="User{{user.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">
+												{{user.username}}
+											</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">
+													&times;
+												</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form>
+												<div class="form-group">
+													<label class="col-form-label">
+														Email
+													</label>
+													<input type="text" class="form-control" id="UserMail{{user.id}}" value="{{user.email}}"/>
+												</div>
+												<div class="form-group">
+													<label class="col-form-label">
+														Username
+													</label>
+													<input type="text" class="form-control" id="UserUsername{{user.id}}" value="{{user.username}}"/>
+												</div>
+												<div class="form-group">
+													<label class="col-form-label">
+														Picture profile
+													</label>
+													<input type="text" class="form-control" id="UserPicture{{user.id}}" value="{{user.picture}}"/>
+												</div>
+
+												<div class="form-group">
+													<label class="col-form-label"></label>
+													<textarea class="form-control" id="UserMailRoles{{user.id}}">
+														{% for role in user.roles %}
+															{{role}}
+														{% endfor %}
+													</textarea>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<form-user data-id="{{user.id}}"></form-user>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						{% endfor %}
 					</div>
 				</div>
 			</div>

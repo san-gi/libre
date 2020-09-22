@@ -44,6 +44,7 @@ class Chapitre
 
     /**
      * @ORM\Column(type="text")
+     * @Groups({"readChapter"})
      */
     private $firstParag;
 
@@ -52,6 +53,12 @@ class Chapitre
      * @Groups({"readChapter"})
      */
     private $content;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="chapitres")
+     * @Groups({"readChapter"})
+     */
+    private $author;
 
     public function getId(): ?int
     {
@@ -114,6 +121,18 @@ class Chapitre
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?user
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?user $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }

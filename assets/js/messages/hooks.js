@@ -31,11 +31,11 @@ export function useChapitreFetch(url){
     const [items, setItems] = useState([])
     let response;
     const load = useCallback(async()=> {
-      
+        
         setLoading(true)
         try {
             response = await jsonFetch(url)
-
+            console.log(response)
             setItems(response)
            
         } catch(error){

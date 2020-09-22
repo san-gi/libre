@@ -146,6 +146,7 @@ function EditArticle({ id }) {
             couverture: $("#ArtiCouverture" + id).val(),
             date: "2020-08-21T02:30:28.960Z",
             content: $("#ArtiContent" + id).val(),
+            author: "/api/users/1"
         })
     }, [load])
 
@@ -192,4 +193,55 @@ class DropZone extends HTMLElement {
     }
 }
 customElements.define('drop-zone', DropZone)
+
+function EditUser({ id }) {
+
+    const onDeleteCallback = useCallback(() => {
+        window.location.reload();
+    }, [])
+    const onSucess = useCallback(() => {
+        window.location.reload();
+    }, [])
+    const onSubmit = useCallback(e => {
+
+        e.preventDefault()
+        load({
+            email: $("#UserMail" + id).val(),
+            username: $("#UserUsername" + id).val(),
+            InscriptionDate: "2020-08-21T02:30:28.960Z",
+            picture: $("#UserPicture" + id).val(),
+          
+        })
+    }, [load])
+
+    const { load, loading } = useFetch('/api/users/' + id, 'PUT', onSucess)
+    const { loading: loadingDelete, load: callDelete } = useFetch('/api/users/' + id, 'DELETE', onDeleteCallback)
+    return <div className="h-100">
+        <button
+            type="button"
+            className="btn btn-secondary"
+            data-dismiss="modal">
+            close										</button>
+        <button
+            type="button"
+            className="btn btn-danger"
+            data-dismiss="modal"
+            onClick={callDelete.bind(this, null)}>
+            Supprimer										</button>
+        <button
+            type="button"
+            className="btn btn-primary"
+            onClick={onSubmit}>
+            Edit User										</button>
+    </div>
+}
+
+class UserElement extends HTMLElement {
+    connectedCallback() {
+        const id = this.dataset.id
+        render(<EditUser id={id} />, this)
+    }
+}
+
+customElements.define('form-user', UserElement)
 

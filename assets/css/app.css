@@ -29,7 +29,7 @@ body {
    
     top:0;
     height: 100vh;
-    width: 100vw;
+   
     overflow: hidden;
     
 }
@@ -44,16 +44,17 @@ body {
     margin: 15px;
     width: 25rem;
     height: 15rem;
-
+    z-index: 1;
 }
 
 #containerCarte{
     text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 #fff;
     height: 80%;
     overflow-y:scroll;
-    width: 100vw; 
+    scrollbar-width: none; 
+    width: 95vw; 
     position: absolute;
-    z-index: 1;
+    
     padding-left: 5%;
     padding-right: 5%;
     padding-top: 2%;
@@ -114,3 +115,16 @@ post-p{
     height: 200px;
     border: 4px dashed #4aa1f3;
 }
+#scroll_to_top {
+    position: fixed;
+
+    scroll-behavior: smooth;
+    bottom: 5em;
+    right: 3em;
+  }
+  #scroll_to_top img {
+    width: 25px;
+  }
+  video{
+      background-color: black;
+  }

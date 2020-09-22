@@ -37,12 +37,13 @@ function Content({ data }) {
     const content = typeof data_content === "string" ? data_content.split("#") : "";
     let rendue = "<div>";
     for (let i = 0; i < content.length; i++) {
-        if (content[i][0] == "v")
-            rendue += '<video src=vid/' + content[i].split("-")[1] + '>sorry, le chargement de la vidéo a échouer</video>'
+        if (content[i][0] == "v"){
+            rendue += '<video width="640" height="480" controls>  <source src = "vid/' + content[i].split("-")[1] + '" type="video/mp4"><source src = "vid/' + content[i].split("-")[1] + '" type="video/avi"></video > '
+        }
         else if (content[i][0] == "i")
-            rendue += '<img class="img-fluid pt-3 pb-3" src=img/' + content[i].split("-")[1] + ">sorry, le chargement de l'image a échouer</img>"
+            rendue += '<img class="img-fluid pt-3 pb-3" src=img/' + content[i].split("-")[1] + " alt='sorry, le chargement de l'image a échouer'></img>"
         else if (content[i][0] == "a")
-            rendue += '<req-article data-id="'+content[i].split("-")[1]+'></req-article>'
+            rendue += '<req-article data-id=' + content[i].split("-")[1] + '></req-article>'
         else
             rendue += "<p class='text-justify '>" + content[i] + "</p>"
     }
@@ -53,8 +54,8 @@ function Content({ data }) {
         <div dangerouslySetInnerHTML={{ __html: rendue }} />
     )
 }
-function Art({id}){
-    const { items: chapter, setItems: setChapter, load, loading } = useChapitreFetch('/api/articles/' + id)
+function Art({ id }) {
+    const { items: article, setItems: setChapter, load, loading } = useChapitreFetch('/api/articles/' + id)
 
     useEffect(() => {
 
@@ -62,18 +63,22 @@ function Art({id}){
 
     }, [id])
 
-    return <p>salut</p>
+    return <div className="bg-dark container p-4 text-light">
+        <h2>{article.titre}</h2>
+        <img className="img-fluid" src={"img/" + article.couverture} />
+        {article.content}
+    </div>
 }
 export class Article extends HTMLElement {
-    
+
     connectedCallback() {
         const id = (this.dataset.id)
-        render(<Art id={id}/>, this)
+        render(<Art id={id} />, this)
     }
 }
 customElements.define('req-article', Article)
 function Cartes({ num }) {
-    
+
 
     let vue = false
     function handleClick(e) {

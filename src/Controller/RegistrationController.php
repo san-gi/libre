@@ -32,7 +32,7 @@ class RegistrationController extends AbstractController
                 )
             );
             $user->setInscriptionDate(new \DateTime());
-            $user->setRoles(['ROLE_ADMIN']);
+            //$user->setRoles(['ROLE_ADMIN']);
             
 
             $entityManager = $this->getDoctrine()->getManager();
